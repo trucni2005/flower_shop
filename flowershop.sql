@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 08:10 PM
+-- Generation Time: Oct 26, 2023 at 09:41 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -241,6 +241,14 @@ CREATE TABLE `customers` (
   `phone` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `address`, `avatar`, `email`, `full_name`, `password`, `phone`, `username`) VALUES
+(1, '1', NULL, '1', '1', '1', '1', '1'),
+(3, NULL, NULL, 'dangthitrucny@gmail.com', NULL, '2', '2', '2');
 
 -- --------------------------------------------------------
 
@@ -1311,7 +1319,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `import_goods`
