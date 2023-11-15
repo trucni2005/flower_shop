@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập sản phẩm cần tìm"
+            android:id="@+id/search_text"
+            android:layout_marginLeft="10dp"
+            ></EditText>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_productsearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            tools:listitem="@layout/product_item"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"></androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>

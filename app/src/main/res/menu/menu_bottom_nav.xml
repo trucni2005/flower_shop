@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_home"
+        android:title="@string/action_home"
+        android:icon="@drawable/ic_baseline_home_24"
+        ></item>
+
+    <item
+        android:id="@+id/action_category"
+        android:title="Category"
+        android:icon="@drawable/ic_baseline_category_24"
+        ></item>
+
+    <item
+        android:id="@+id/action_notification"
+        android:title="@string/action_notification"
+        android:icon="@drawable/baseline_notifications_none_24"
+        ></item>
+
+    <item
+        android:id="@+id/action_account"
+        android:title="@string/action_account"
+        android:icon="@drawable/ic_baseline_manage_accounts_24"
+        ></item>
+
+
+
+</menu>

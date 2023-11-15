@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f3eef3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <ImageView
+            android:id="@+id/forget_password_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:minWidth="32dp"
+            android:minHeight="32dp"
+            android:padding="5dp" />
+
+
+        <TextView
+            android:id="@+id/forget_password_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="Please enter new password"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/mainText"
+            android:textSize="30sp" />
+
+
+        <EditText
+            android:id="@+id/et_new_password"
+            android:layout_width="340dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+
+            android:background="@drawable/rounded_border"
+            android:backgroundTint="#fff"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Enter your new password"
+            android:textColorHint="#cbcad1"
+            android:layout_marginBottom="20dp"
+            android:textSize="16sp"></EditText>
+
+        <EditText
+            android:id="@+id/et_reenter_password"
+            android:layout_width="340dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+
+            android:background="@drawable/rounded_border"
+            android:backgroundTint="#fff"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Re-enter your new password"
+            android:textColorHint="#cbcad1"
+            android:layout_marginBottom="20dp"
+            android:textSize="16sp"></EditText>
+
+        <Button
+            android:id="@+id/btn_submit"
+            style="@android:style/Widget.Button"
+            android:layout_width="340dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_background"
+            android:backgroundTint="@color/mainText"
+            android:fontFamily="@font/poppins_semibold"
+            android:letterSpacing="0.1"
+            android:pointerIcon="hand"
+            android:text="NEXT"
+            android:textColor="#fff"
+            android:textSize="20sp"></Button>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

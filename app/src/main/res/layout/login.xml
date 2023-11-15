@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="#f3eef3"
+    android:orientation="vertical">
+
+    <TextView
+        android:paddingTop="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="HELLO!"
+        android:textColor="@color/mainText"
+        android:textSize="34sp">
+    </TextView>
+    <TextView
+        android:fontFamily="@font/poppins_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="We wish you a nice day!"
+        android:textColor="#454054"
+        android:textSize="20sp">
+    </TextView>
+
+    <EditText
+        android:id="@+id/etusername"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_border"
+        android:backgroundTint="#fff"
+        android:drawableStart="@drawable/user"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:hint="Username"
+        android:text="phuc"
+        android:textColorHint="#cbcad1"
+        android:textSize="16sp"></EditText>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_border"
+        android:backgroundTint="#fff"
+        android:drawableStart="@drawable/password"
+        android:drawableEnd="@drawable/hide"
+        android:drawablePadding="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:text="trucni2005"
+        android:textColorHint="#cbcad1"
+        android:textSize="16sp"></EditText>
+    <TextView
+        android:id="@+id/tv_forgotPass"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="35dp"
+        android:text="Fogot Password?"
+        android:paddingLeft="32dp"
+        android:textColor="#000000"
+        android:textSize="15sp">
+    </TextView>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:fontFamily="@font/poppins_semibold"
+            android:backgroundTint="@color/mainText"
+            style="@android:style/Widget.Button"
+            android:layout_width="340dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:letterSpacing="0.1"
+            android:textColor="#fff"
+            android:background="@drawable/btn_background"
+            android:text="SIGN IN">
+        </Button>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:background="#666" />
+        <TextView
+            android:fontFamily="@font/poppins_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Or continue with"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textColor="#454054"
+            android:textSize="15sp">
+        </TextView>
+        <View
+            android:id="@+id/line2"
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:background="#666" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+        <Button
+            android:backgroundTint="#f3eef3"
+            style="@android:style/Widget.Button"
+            android:layout_width="80dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+
+            android:drawableStart="@drawable/gmail"
+            android:background="@drawable/btn_background">
+        </Button>
+
+        <Button
+            android:backgroundTint="#f3eef3"
+            style="@android:style/Widget.Button"
+            android:layout_width="80dp"
+            android:layout_height="75dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+
+            android:drawableStart="@drawable/facebook"
+            android:background="@drawable/btn_background">
+        </Button>
+    </LinearLayout>
+
+    <TextView
+        android:fontFamily="@font/poppins_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not a member ?"
+        android:layout_gravity="center"
+        android:textColor="#454054"
+        android:layout_marginBottom="15dp"
+        android:textSize="15sp">
+    </TextView>
+    <Button
+        android:id="@+id/btnRegister"
+        android:fontFamily="@font/poppins_semibold"
+        android:backgroundTint="@color/mainText"
+        style="@android:style/Widget.Button"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:letterSpacing="0.1"
+        android:textColor="#fff"
+        android:background="@drawable/btn_background"
+        android:pointerIcon="hand"
+        android:text="REGISTER NOW">
+    </Button>
+
+
+</LinearLayout>
