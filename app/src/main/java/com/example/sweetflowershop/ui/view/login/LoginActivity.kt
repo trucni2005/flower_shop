@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sweetflowershop.databinding.LoginBinding
 import com.example.sweetflowershop.network.apiService._Constant
-import com.example.sweetflowershop.network.apiService.account.AccountAPIService
+import com.example.sweetflowershop.data.repository.AccountRepository
 import com.example.sweetflowershop.ui.view.forgotPassword.ForgotPasswordActivity
 import com.example.sweetflowershop.ui.view.main.MainActivity
 import com.example.sweetflowershop.ui.view.register.RegisterActivity
@@ -23,7 +23,7 @@ import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: LoginBinding
-    private val accountAPIService = AccountAPIService()
+    private val accountAPIService = AccountRepository()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -55,6 +57,11 @@ android {
 }
 
 dependencies {
+
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.22")
+
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("androidx.room:room-runtime:2.3.0")
     annotationProcessor ("androidx.room:room-compiler:2.3.0")
@@ -86,5 +93,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation ("com.sendgrid:sendgrid-java:4.9.3")
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation ("com.tinder.scarlet:scarlet:0.1.11")
+    implementation ("com.tinder.scarlet:websocket-okhttp:0.1.11")
 
 }

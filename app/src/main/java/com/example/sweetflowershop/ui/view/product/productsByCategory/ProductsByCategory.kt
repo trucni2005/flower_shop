@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.sweetflowershop.databinding.ActivityProductByCategoryBinding
 import com.example.sweetflowershop.data.model.product.Product
-import com.example.sweetflowershop.ui.adapter.product.ProductsAdapter
-import com.example.sweetflowershop.network.apiService.category.CategoryAPIService
-import com.example.sweetflowershop.network.apiService.productAPIService.ProductAPIService
+import com.example.sweetflowershop.ui.adapter.ProductsAdapter
+import com.example.sweetflowershop.data.repository.CategoryAPIService
+import com.example.sweetflowershop.data.repository.ProductAPIService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers

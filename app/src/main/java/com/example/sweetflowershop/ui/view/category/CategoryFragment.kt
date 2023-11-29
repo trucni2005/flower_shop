@@ -2,19 +2,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sweetflowershop.databinding.FragmentCategoryBinding
-import com.example.sweetflowershop.data.model.category.Category
-import com.example.sweetflowershop.ui.adapter.category.CategoryAdapter
-import com.example.sweetflowershop.network.apiService.category.CategoryAPIService
+import com.example.sweetflowershop.ui.adapter.CategoryAdapter
+import com.example.sweetflowershop.data.repository.CategoryAPIService
 import com.example.sweetflowershop.ui.viewmodel.category.CategoryViewModel
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.observers.DisposableSingleObserver
-import io.reactivex.rxjava3.schedulers.Schedulers
 
 class CategoryFragment : Fragment() {
     private lateinit var binding: FragmentCategoryBinding
@@ -28,7 +23,7 @@ class CategoryFragment : Fragment() {
     ): View? {
         binding = FragmentCategoryBinding.inflate(inflater, container, false)
 
-        categoryViewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
+        categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
 
         return binding.root
     }

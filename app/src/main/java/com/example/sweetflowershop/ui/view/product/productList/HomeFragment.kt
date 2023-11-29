@@ -12,17 +12,12 @@ import com.example.sweetflowershop.R
 import com.example.sweetflowershop.databinding.FragmentHomeBinding
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import com.example.sweetflowershop.ui.adapter.product.ProductsAdapter
+import com.example.sweetflowershop.ui.adapter.ProductsAdapter
 import com.squareup.picasso.Picasso
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.sweetflowershop.ui.view.cart.CartActivity
-import com.example.sweetflowershop.ui.view.main.MainActivity
-import com.example.sweetflowershop.ui.view.product.productDetail.ProductDetail
 import com.example.sweetflowershop.ui.viewmodel.product.HomeViewModel
-import java.io.Serializable
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding

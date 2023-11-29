@@ -12,6 +12,7 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="register"><u>Register</u></string>
     <string name="create_an_account">CREATE AN ACCOUNT</string>
+    <string name="end_date_label">Kết thúc ngày: %1$s</string>
 
     <string name="hint_last_name">Last name</string>
     <string name="hint_first_name">First name</string>

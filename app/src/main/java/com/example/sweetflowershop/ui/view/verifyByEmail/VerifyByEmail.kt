@@ -8,13 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.sweetflowershop.ui.view.forgotPassword.InputNewPasswordActivity
 import com.example.sweetflowershop.ui.view.main.MainActivity
 import com.example.sweetflowershop.databinding.VerifyByEmailBinding
-import com.example.sweetflowershop.network.apiService.account.AccountAPIService
+import com.example.sweetflowershop.data.repository.AccountRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class VerifyByEmail : AppCompatActivity() {
     private lateinit var binding: VerifyByEmailBinding
-    private val accountAPIService = AccountAPIService()
+    private val accountAPIService = AccountRepository()
     private var shouldLaunchLoginActivity = false
 
     override fun onCreate(savedInstanceState: Bundle?) {

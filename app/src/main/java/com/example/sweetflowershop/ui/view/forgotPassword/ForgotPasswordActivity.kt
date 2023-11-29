@@ -6,14 +6,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sweetflowershop.databinding.ActivityForgotPassBinding
 import com.example.sweetflowershop.ui.view.verifyByEmail.VerifyByEmail
-import com.example.sweetflowershop.network.apiService.account.AccountAPIService
+import com.example.sweetflowershop.data.repository.AccountRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ForgotPasswordActivity: AppCompatActivity() {
     private lateinit var binding: ActivityForgotPassBinding
-    private val accountAPIService = AccountAPIService()
+    private val accountAPIService = AccountRepository()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {

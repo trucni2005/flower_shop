@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="@dimen/address_details_marginTop"
                     android:paddingBottom="@dimen/address_details_marginTop"
-                    android:textColor="@color/item_value_text_color"
+                    android:textColor="@color/colorDarkGrey"
                     android:textSize="@dimen/address_details_textSize"
                     android:textStyle="bold"
                     tools:text="Home" />
@@ -254,7 +254,7 @@
             </LinearLayout>
 
             <TextView
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/poppins_semibold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/my_order_details_content_marginStartEnd"

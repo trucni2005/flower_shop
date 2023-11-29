@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sweetflowershop.data.model.cart.CartItem
 import com.example.sweetflowershop.ui.view.main.MainActivity
-import com.example.sweetflowershop.viewmodel.CartAPIService
+import com.example.sweetflowershop.data.repository.CartAPIService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers

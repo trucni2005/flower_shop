@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sweetflowershop.data.model.category.Category
-import com.example.sweetflowershop.network.apiService.category.CategoryAPIService
+import com.example.sweetflowershop.data.repository.CategoryAPIService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 

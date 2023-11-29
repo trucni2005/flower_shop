@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.databinding.ActivityProductDetailBinding
 import com.example.sweetflowershop.data.model.product.Product
+import com.example.sweetflowershop.network.apiService._Constant
 import com.squareup.picasso.Picasso
 
 class ProductDetail : AppCompatActivity() {
@@ -58,7 +59,7 @@ class ProductDetail : AppCompatActivity() {
         for (imageUrl in imageUrls) {
             if (imageUrl != null && imageUrl.isNotBlank()) {
                 val imgView = ImageView(this)
-                Picasso.get().load("https://$imageUrl").into(imgView)
+                Picasso.get().load(_Constant.baseUrl_ + "images/product/${imageUrl}").into(imgView)
                 imgView.scaleType = ImageView.ScaleType.FIT_XY
                 viewFlipper.addView(imgView)
             }

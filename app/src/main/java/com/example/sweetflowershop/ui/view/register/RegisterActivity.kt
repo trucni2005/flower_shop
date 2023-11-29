@@ -7,15 +7,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sweetflowershop.databinding.ActivityRegisterBinding
 import com.example.sweetflowershop.ui.view.verifyByEmail.VerifyByEmail
-import com.example.sweetflowershop.network.apiService.account.AccountAPIService
+import com.example.sweetflowershop.data.repository.AccountRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private val accountAPIService = AccountAPIService()
+    private val accountAPIService = AccountRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

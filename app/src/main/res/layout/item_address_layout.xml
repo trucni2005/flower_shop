@@ -40,7 +40,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/address_details_textSize"
             android:textStyle="bold"
-            tools:text="Home" />
+            android:text="Home" />
     </LinearLayout>
 
     <TextView

@@ -49,23 +49,25 @@
                 <TextView
                     android:id="@+id/tv_product_detail_name"
                     android:layout_width="0dp"
-                    android:maxEms="30"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="FLOWER NAME"
+                    android:fontFamily="@font/rouge_script"
+                    android:maxEms="30"
                     android:maxLines="2"
+                    android:text="Flower name"
                     android:textColor="@color/mainText"
-                    android:textSize="25sp" />
+                    android:textSize="50sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_product_detail_price"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/poppins_regular"
                     android:gravity="end"
                     android:text="99.99$"
+                    android:textStyle="bold"
                     android:textColor="@color/mainText"
                     android:textSize="25sp" />
             </LinearLayout>
@@ -94,18 +96,18 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Take a moonlight stroll down twilit lanes while the starlight dances on velvet Stocks, Alstroemeria, Chrysanthemum and the petals of pink Roses. Delivered artistically arranged for added wow-factor, your product will arrive in an eco-friendly gel-bag to ensure freshness. Wash off the gel and cut 3cm off the stem before arranging in your chosen vase."
                 android:textColor="@color/textAd"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <TextView
+                android:fontFamily="@font/poppins_regular"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:fontFamily="@font/poppins_medium"
                 android:text="Product Details"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/details"
@@ -137,10 +139,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/poppins_regular"
                         android:text="Delivery Information"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/delivery"
@@ -173,10 +175,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/poppins_regular"
                         android:text="Sub Information"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/sub_info"
@@ -209,12 +211,12 @@ In the rare event that a substitution is necessary when buying a gift, products 
                     android:orientation="vertical">
 
                     <TextView
+                        android:fontFamily="@font/poppins_regular"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
                         android:text="Ratings"
                         android:textColor="@color/black"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/RatingProductDetails"
@@ -262,23 +264,13 @@ In the rare event that a substitution is necessary when buying a gift, products 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/poppins_medium"
+                        android:fontFamily="@font/rouge_script"
                         android:text="You can also Like this "
                         android:textColor="@color/mainText"
-                        android:textSize="25sp" />
+                        android:textSize="35sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/metropolis_regular"
-                    android:text="Recommended"
-                    android:textColor="@color/textAd"
-                    android:textSize="11sp" />
 
             </LinearLayout>
 

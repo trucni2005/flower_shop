@@ -43,11 +43,10 @@
                 android:layout_marginBottom="20dp"
                 android:paddingRight="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/mainText"
+                android:textColor="@color/textAd"
                 android:background="@drawable/rounder_border_littlebit"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="Enter your name"
-                android:inputType="number"
                 android:maxLines="1" />
 
             <EditText
@@ -60,7 +59,7 @@
                 android:layout_marginBottom="20dp"
                 android:paddingRight="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/mainText"
+                android:textColor="@color/textAd"
                 android:background="@drawable/rounder_border_littlebit"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="Enter your phone number"
@@ -118,11 +117,10 @@
                 android:drawableRight="@null"
                 android:paddingRight="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="@color/mainText"
+                android:textColor="@color/textAd"
                 android:background="@drawable/rounder_border_littlebit"
                 android:fontFamily="@font/poppins_medium"
                 android:hint="Enter your street, building, ..."
-                android:inputType="number"
                 android:maxLines="1" />
 
             <Button
