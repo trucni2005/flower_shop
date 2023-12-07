@@ -4,6 +4,7 @@ import CategoryFragment
 import com.example.sweetflowershop.ui.view.product.productList.HomeFragment
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -13,7 +14,10 @@ import androidx.viewpager.widget.ViewPager
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.ui.view.account.AccountFragment
 import com.example.sweetflowershop.ui.view.login.LoginActivity
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager
@@ -22,6 +26,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val token = task.result
+                    saveTokenToSharedPreferences(token)
+                    Log.d("FCM Token", token ?: "Token is null")
+                } else {
+                    Log.e("FCM Token", "Failed to get token")
+                }
+            }
         val shouldLaunchLoginActivity = intent.getBooleanExtra("shouldLaunchLoginActivity", true)
 
         if (shouldLaunchLoginActivity) {
@@ -29,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         } else {
+
             setContentView(R.layout.activity_main)
             supportActionBar?.hide()
 
@@ -46,6 +62,14 @@ class MainActivity : AppCompatActivity() {
                 true
             }
         }
+
+    }
+
+    private fun saveTokenToSharedPreferences(token: String?) {
+        val sharedPreferences = getSharedPreferences("MySharedPreferences", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("FCM_TOKEN", token)
+        editor.apply()
     }
 
     inner class MyPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {

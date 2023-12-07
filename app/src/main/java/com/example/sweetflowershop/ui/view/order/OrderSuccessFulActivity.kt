@@ -14,6 +14,7 @@ class OrderSuccessFulActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityOrderSuccessfulBinding.inflate(layoutInflater)
         supportActionBar?.hide()
+        Log.d("2","Change successful")
         setContentView(binding.root)
     }
 }
