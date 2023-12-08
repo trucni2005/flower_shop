@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import com.example.sweetflowershop.ui.view.cart.CartActivity
-import com.example.sweetflowershop.ui.viewmodel.product.HomeViewModel
+import com.example.sweetflowershop.ui.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding

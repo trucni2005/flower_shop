@@ -1,4 +1,4 @@
-package com.example.sweetflowershop.ui.viewmodel.account
+package com.example.sweetflowershop.ui.viewmodel
 
 import android.content.Context
 import android.content.Intent

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sweetflowershop.ui.adapter.CartAdapter
 import com.example.sweetflowershop.databinding.FragmentCartsBinding
 import com.example.sweetflowershop.ui.view.address.ChooseAddressActivity
-import com.example.sweetflowershop.ui.viewmodel.cart.CartViewModel
+import com.example.sweetflowershop.ui.viewmodel.CartViewModel
 import com.example.sweetflowershop.data.repository.CartAPIService
 
 class CartActivity : AppCompatActivity() {
@@ -37,7 +37,8 @@ class CartActivity : AppCompatActivity() {
         })
 
         cartViewModel.totalBillLiveData.observe(this, Observer { totalBill ->
-            binding.tvTotalCart.text = "$totalBill"
+            val formattedTotalBill = totalBill.toInt().toString() + "đ"
+            binding.tvTotalCart.text = formattedTotalBill
         })
         cartViewModel.fetchCartItems(this)
 
@@ -45,5 +46,14 @@ class CartActivity : AppCompatActivity() {
             val intent = Intent(this, ChooseAddressActivity::class.java)
             startActivity(intent)
         }
+    }
+}
+
+fun Double.removeDecimalIfZero(): String {
+    val stringValue = this.toString()
+    return if (stringValue.endsWith(".0")) {
+        stringValue.substring(0, stringValue.length - 2)
+    } else {
+        stringValue
     }
 }

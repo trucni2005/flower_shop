@@ -1,4 +1,4 @@
-package com.example.sweetflowershop.ui.viewmodel.notification
+package com.example.sweetflowershop.ui.viewmodel
 
 import android.app.Application
 import com.example.sweetflowershop.ui.view.order.OrderSuccessFulActivity

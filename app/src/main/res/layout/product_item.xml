@@ -48,9 +48,9 @@
                 android:id="@+id/tv_original_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="123"
+                android:text="123000đ"
                 android:textColor="#474342"
-                android:textSize="15sp">
+                android:textSize="12sp">
 
             </TextView>
 
@@ -60,9 +60,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:paddingLeft="20dp"
-                android:text="456"
+                android:text="456000đ"
                 android:textColor="@color/mainText"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold">
 
             </TextView>

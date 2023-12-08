@@ -63,7 +63,6 @@ dependencies {
     implementation ("com.github.bumptech.glide:compiler:4.12.0")
     implementation ("pl.droidsonroids.gif:android-gif-drawable:1.2.22")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("androidx.room:room-runtime:2.3.0")
     annotationProcessor ("androidx.room:room-compiler:2.3.0")

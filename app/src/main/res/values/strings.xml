@@ -154,4 +154,5 @@
 
     <string name="order_status_in_process">In Process</string>
     <string name="order_status_delivered">Delivered</string>
+    <string name="orderid_order_id">OrderID: @{order.id}</string>
 </resources>

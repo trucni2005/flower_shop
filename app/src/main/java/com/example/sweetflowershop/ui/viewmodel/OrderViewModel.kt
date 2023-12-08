@@ -1,4 +1,4 @@
-package com.example.sweetflowershop.ui.viewmodel.order
+package com.example.sweetflowershop.ui.viewmodel
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -81,6 +81,7 @@ class OrderViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<Payment>() {
                     override fun onSuccess(payment: Payment) {
+                        if (paymentOnline == true){
                         Log.d("SUCCESS", payment.urlQR)
                         Log.d("SUCCESS", payment.order.toString())
                         Log.d("SUCCESS", payment.methodPayment)
@@ -91,7 +92,7 @@ class OrderViewModel : ViewModel() {
                             ContextCompat.startActivity(context, intent, null)
                         } catch (e: ActivityNotFoundException) {
                             Toast.makeText(context, "No web browser found", Toast.LENGTH_SHORT).show()
-                        }
+                        }}
                     }
 
                     override fun onError(e: Throwable) {

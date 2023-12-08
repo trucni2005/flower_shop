@@ -1,0 +1,77 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="vertical"
+    app:cardBackgroundColor="#fff"
+    app:cardElevation="3dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="12dp"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/ohi_image_url"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/flower"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true" />
+
+
+        <LinearLayout
+            android:paddingLeft="12dp"
+
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_ohi_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                android:textColor="#F59794"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_ohi_item_price"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textColor="@color/item_value_text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="999$" />
+
+                <TextView
+                    android:id="@+id/tv_ohi_item_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/item_value_text_color"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="Số lượng: 3" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

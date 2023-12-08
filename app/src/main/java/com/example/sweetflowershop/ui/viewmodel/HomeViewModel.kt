@@ -1,4 +1,4 @@
-package com.example.sweetflowershop.ui.viewmodel.product
+package com.example.sweetflowershop.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

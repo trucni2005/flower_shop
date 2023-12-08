@@ -4,6 +4,7 @@ import com.example.sweetflowershop.data.model.product.Product
 import com.example.sweetflowershop.data.api.ProductsAPI
 import io.reactivex.rxjava3.core.Single
 import com.example.sweetflowershop.data.model.customer_account.AccountModel
+import com.example.sweetflowershop.data.model.review.Review
 import io.reactivex.rxjava3.core.Observable
 
 class ProductAPIService {
@@ -19,6 +20,10 @@ class ProductAPIService {
 
     fun addToCart(token: String, productId: Int): Observable<AccountModel> {
         return api.addToCart(token, productId)
+    }
+
+    fun getReviewsbyProduct(productId: Int): Single<List<Review>> {
+        return api.getReviewsbyProduct(productId)
     }
 
 //

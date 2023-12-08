@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.cart.CartItem
 import com.example.sweetflowershop.data.model.cart.CartToSend
-import com.example.sweetflowershop.ui.viewmodel.cart.CartViewModel
+import com.example.sweetflowershop.ui.viewmodel.CartViewModel
 import com.example.sweetflowershop.data.repository.CartAPIService
 import com.example.sweetflowershop.network.apiService._Constant
 import com.squareup.picasso.Picasso
@@ -74,7 +74,7 @@ class CartAdapter(private var carts: MutableList<CartItem> = mutableListOf(),
             )
             tvItemOriginalPrice.text = spannableString
 
-            tvItemPrice.text = "${productItem.price}$"
+            tvItemPrice.text = "${productItem.price}đ"
             tvItemQuantity.text = "${cartItem.quantity}"
 
             var imageUrl = _Constant.baseUrl_ + "images/product/${productItem.image1}"

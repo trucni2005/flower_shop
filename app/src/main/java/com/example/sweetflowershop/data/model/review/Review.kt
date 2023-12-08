@@ -5,7 +5,6 @@ import com.example.sweetflowershop.data.model.customer_account.Account
 data class Review(
     val id: Int,
     val customer: Account,
-    val productId: Int,
     val rate: Int,
     val content: String,
     val name: String,

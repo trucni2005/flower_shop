@@ -25,7 +25,7 @@ import com.example.sweetflowershop.databinding.ActivityCustomerInformationBindin
 import com.example.sweetflowershop.network.apiService._Constant
 import com.example.sweetflowershop.data.repository.AccountRepository
 import com.example.sweetflowershop.ui.view.main.MainActivity
-import com.example.sweetflowershop.ui.viewmodel.account.AccountViewModel
+import com.example.sweetflowershop.ui.viewmodel.AccountViewModel
 import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable

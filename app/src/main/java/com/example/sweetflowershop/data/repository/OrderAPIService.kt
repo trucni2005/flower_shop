@@ -4,6 +4,7 @@ import com.example.sweetflowershop.data.model.order.Order
 import com.example.sweetflowershop.data.model.order.OrderToSend
 import com.example.sweetflowershop.data.model.order.Payment
 import com.example.sweetflowershop.data.api.OrderAPI
+import com.example.sweetflowershop.data.model.order.OrderHistory
 import io.reactivex.rxjava3.core.Single
 
 class OrderAPIService {
@@ -15,5 +16,9 @@ class OrderAPIService {
 
     fun confirmOrder(token: String, orderToSend: OrderToSend): Single<Payment> {
         return api.confirmOrder(token, orderToSend)
+    }
+
+    fun getOrderHistory(token: String): Single<List<OrderHistory>> {
+        return api.getOrderHistory(token)
     }
 }

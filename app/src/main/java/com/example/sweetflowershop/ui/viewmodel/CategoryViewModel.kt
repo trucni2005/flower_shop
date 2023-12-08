@@ -1,4 +1,4 @@
-package com.example.sweetflowershop.ui.viewmodel.category
+package com.example.sweetflowershop.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="orderViewModel"
-            type="com.example.sweetflowershop.ui.viewmodel.order.OrderViewModel" />
+            type="com.example.sweetflowershop.ui.viewmodel.OrderViewModel" />
     </data>
 
     <RelativeLayout

@@ -204,6 +204,16 @@
             </intent-filter>
         </service>
 
+        <activity
+            android:name=".ui.view.order.ViewOrderHistoryActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui.view.order.OrderDetailActivity"
+            android:exported="false">
+        </activity>
+
     </application>
 
 </manifest>

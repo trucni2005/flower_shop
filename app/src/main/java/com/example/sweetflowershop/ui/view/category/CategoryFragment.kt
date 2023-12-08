@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sweetflowershop.databinding.FragmentCategoryBinding
 import com.example.sweetflowershop.ui.adapter.CategoryAdapter
 import com.example.sweetflowershop.data.repository.CategoryAPIService
-import com.example.sweetflowershop.ui.viewmodel.category.CategoryViewModel
+import com.example.sweetflowershop.ui.viewmodel.CategoryViewModel
 
 class CategoryFragment : Fragment() {
     private lateinit var binding: FragmentCategoryBinding

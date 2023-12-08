@@ -3,18 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ViewOrderActivity">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#fd6b68"
+        android:background="@color/mainText"
         app:titleTextColor="#fff"
         android:importantForContentCapture="auto"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="MY ORDER">
+        app:title="ĐƠN MUA">
 
     </androidx.appcompat.widget.Toolbar>
 

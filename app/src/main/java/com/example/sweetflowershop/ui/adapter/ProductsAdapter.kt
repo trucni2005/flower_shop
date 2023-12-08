@@ -98,7 +98,7 @@ class ProductsAdapter(private var products: List<Product>) :
         fun bind(product: Product) {
             tvName.text = product.name
             tvOriginalPrice.text = product.original_price
-            tvPrice.text = "${product.price}$"
+            tvPrice.text = "${product.price}đ"
             val spannableString = SpannableString(tvOriginalPrice.text)
             spannableString.setSpan(StrikethroughSpan(), 0, tvOriginalPrice.text.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             tvOriginalPrice.text = spannableString

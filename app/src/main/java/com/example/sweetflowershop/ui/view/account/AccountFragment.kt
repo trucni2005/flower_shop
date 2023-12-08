@@ -12,7 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.databinding.FragmentAccountBinding
-import com.example.sweetflowershop.ui.viewmodel.account.AccountViewModel
+import com.example.sweetflowershop.ui.view.order.ViewOrderHistoryActivity
+import com.example.sweetflowershop.ui.viewmodel.AccountViewModel
 
 class AccountFragment : Fragment() {
 
@@ -46,6 +47,11 @@ class AccountFragment : Fragment() {
             } ?: run {
                 Log.e("Account", "Account is null")
             }
+        }
+
+        binding.cvMyOrders.setOnClickListener {
+            val intent = Intent(requireContext(), ViewOrderHistoryActivity::class.java)
+            startActivity(intent)
         }
 
         return binding.root

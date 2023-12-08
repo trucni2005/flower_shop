@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sweetflowershop.databinding.ActivityAddressListBinding
 import com.example.sweetflowershop.data.repository.AddressAPIService
 import com.example.sweetflowershop.ui.adapter.AddressAdapter
-import com.example.sweetflowershop.ui.viewmodel.address.AddressViewModel
+import com.example.sweetflowershop.ui.viewmodel.AddressViewModel
 
 class ChooseAddressActivity : AppCompatActivity() {
 

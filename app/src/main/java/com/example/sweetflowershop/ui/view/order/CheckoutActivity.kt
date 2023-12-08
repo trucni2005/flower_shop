@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.address.Address
 import com.example.sweetflowershop.data.model.cart.CartItem
 import com.example.sweetflowershop.data.model.order.Order
@@ -17,7 +15,7 @@ import com.example.sweetflowershop.data.model.voucher.Voucher
 import com.example.sweetflowershop.databinding.ActivityCheckoutBinding
 import com.example.sweetflowershop.ui.adapter.CheckoutAdapter
 import com.example.sweetflowershop.ui.view.voucher.ChooseVoucherActivity
-import com.example.sweetflowershop.ui.viewmodel.order.OrderViewModel
+import com.example.sweetflowershop.ui.viewmodel.OrderViewModel
 
 class CheckoutActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheckoutBinding
@@ -87,14 +85,28 @@ class CheckoutActivity : AppCompatActivity() {
                 paymentOnline = true
             }
 
-            if (paymentOnline != null) {
+            if (paymentOnline == true) {
                 confirmOrder(addressId, voucherId, paymentOnline, note)
                 val intent = Intent(this, WaitingForPaymentActivity::class.java)
-//                intent.putExtra("ORDER_ID", orderId)
+                startActivity(intent)
+            }
+            else {
+                confirmOrder(addressId, voucherId, false, note)
+                val intent = Intent(this, OrderSuccessFulActivity::class.java)
                 startActivity(intent)
             }
         }
     }
+
+    fun Double.removeDecimalIfZero(): String {
+        val stringValue = this.toString()
+        return if (stringValue.endsWith(".0")) {
+            stringValue.substring(0, stringValue.length - 2)
+        } else {
+            stringValue
+        }
+    }
+
 
     fun updateOrder(addressId: Int, voucherId: Long?, paymentOnline: Boolean, note: String?) {
             orderViewModel.createOrder(
@@ -108,10 +120,10 @@ class CheckoutActivity : AppCompatActivity() {
                             updateOrder.cartItems.toMutableList()
                         checkoutAdapter.updateCheckoutItems(mutableCheckoutItems)
                         order = updateOrder
-                        binding.tvCheckoutSubTotal.text = updateOrder.totalPrice.toString()
-                        binding.tvCheckoutShippingCharge.text = updateOrder.shipPrice.toString()
-                        binding.tvDiscount.text = updateOrder.discount.toString()
-                        binding.tvCheckoutTotalAmount.text = updateOrder.amount.toString()
+                        binding.tvCheckoutSubTotal.text = updateOrder.totalPrice.removeDecimalIfZero()+"đ"
+                        binding.tvCheckoutShippingCharge.text = updateOrder.shipPrice.removeDecimalIfZero()+"đ"
+                        binding.tvDiscount.text = updateOrder.discount.removeDecimalIfZero()+"đ"
+                        binding.tvCheckoutTotalAmount.text = updateOrder.amount.removeDecimalIfZero()+"đ"
                         Log.d("order", order.toString())
                     }
 
