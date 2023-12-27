@@ -30,10 +30,11 @@
                 android:id="@+id/voucher_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/flower"
-                android:scaleType="fitXY"
+                android:layout_marginLeft="5dp"
+                android:adjustViewBounds="true"
                 android:background="@drawable/rounded_corner"
-                android:adjustViewBounds="true" />
+                android:scaleType="fitXY"
+                android:src="@drawable/unnamed" />
 
             <LinearLayout
                 android:paddingLeft="12dp"
@@ -45,18 +46,18 @@
                     android:id="@+id/tv_voucher"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="2dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="@{voucher.title}"
                     android:textColor="#000000"
-                    android:textSize="18sp"
+                    android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="4dp"
-                    app:cardBackgroundColor="#F15321"
+                    app:cardBackgroundColor="#D60202"
                     app:cardElevation="4dp"
                     app:cardUseCompatPadding="true">
 
@@ -64,14 +65,14 @@
                         android:id="@+id/tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/poppins_regular"
                         android:paddingStart="8sp"
-                        android:paddingTop="2sp"
-                        android:paddingBottom="2sp"
+                        android:paddingTop="5sp"
+                        android:paddingBottom="5sp"
                         android:paddingEnd="8sp"
                         android:text="Limited Offer"
                         android:textColor="#FFFFFF"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -80,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="@{@string/end_date_label(voucher.endDate)}"
-                    android:textSize="12sp">
+                    android:textSize="10sp">
                 </TextView>
             </LinearLayout>
 

@@ -23,7 +23,7 @@
         <ViewFlipper
             android:id="@+id/img_product_detail"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="350dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,15 +48,13 @@
 
                 <TextView
                     android:id="@+id/tv_product_detail_name"
-                    android:layout_width="0dp"
+                    android:layout_width="7dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:fontFamily="@font/rouge_script"
-                    android:maxEms="30"
-                    android:maxLines="2"
                     android:text="Flower name"
                     android:textColor="@color/mainText"
-                    android:textSize="50sp"
+                    android:textSize="35sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -69,8 +67,9 @@
                     android:text="99.99$"
                     android:textStyle="bold"
                     android:textColor="@color/mainText"
-                    android:textSize="25sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
+
 
             <RatingBar
                 android:id="@+id/rating"
@@ -86,6 +85,31 @@
                 android:transformPivotY="15dp"
                 android:progressTint="#FFEB3B" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/upper_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/middle_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <TextView
                 android:layout_marginTop="10dp"
                 android:id="@+id/description"
@@ -93,21 +117,57 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Take a moonlight stroll down twilit lanes while the starlight dances on velvet Stocks, Alstroemeria, Chrysanthemum and the petals of pink Roses. Delivered artistically arranged for added wow-factor, your product will arrive in an eco-friendly gel-bag to ensure freshness. Wash off the gel and cut 3cm off the stem before arranging in your chosen vase."
                 android:textColor="@color/textAd"
                 android:textSize="13sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/upper_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/middle_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <TextView
-                android:fontFamily="@font/poppins_regular"
+                android:fontFamily="@font/poppins_semibold"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Product Details"
+                android:text="Chi tiết sản phẩm"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/details"
@@ -121,12 +181,48 @@
                 android:text="3x Blissful Pink Rose Intermediates\n2x Radiant Pink Stocks\n1x Breathtaking Green Greenbell\n3x Quaint Pink Chrysanthemums\n3x Vibrant Cerise Alstroemerias\nVase not included\nSize:  50cm"
                 android:textSize="13sp" />
 
+            <View
+                android:id="@+id/upper_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D1D0D0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/upper_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/middle_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
 
             <LinearLayout
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp">
 
                 <LinearLayout
@@ -139,10 +235,21 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Delivery Information"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Thông tin vận chuyển"
                         android:textColor="@color/black"
-                        android:textSize="20dp" />
+                        android:textSize="14dp"
+                        android:layout_marginBottom="10dp"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/delivery"
@@ -154,12 +261,40 @@
                         android:textSize="13sp"
                         android:ellipsize="end" />
 
+
+
                 </LinearLayout>
+
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/upper_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/middle_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <LinearLayout
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -173,12 +308,22 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/poppins_semibold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="Sub Information"
+                        android:text="Thông tin bổ sung"
                         android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/line"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/sub_info"
@@ -195,12 +340,38 @@ In the rare event that a substitution is necessary when buying a gift, products 
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/upper_line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/middle_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp">
 
                 <TextView
@@ -208,10 +379,10 @@ In the rare event that a substitution is necessary when buying a gift, products 
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="60dp"
-                    android:fontFamily="@font/poppins_regular"
-                    android:text="Ratings"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Đánh giá"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toStartOf="@+id/ivArrow"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -225,26 +396,63 @@ In the rare event that a substitution is necessary when buying a gift, products 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tvRatings" />
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_rating"
-                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <View
+                android:id="@+id/u"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/m"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/u"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line"
+                app:layout_constraintTop_toBottomOf="@+id/m"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"></View>
         </LinearLayout>
+
+
 
         <LinearLayout
             android:id="@+id/newLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
@@ -252,7 +460,6 @@ In the rare event that a substitution is necessary when buying a gift, products 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -12,6 +12,7 @@ import com.example.sweetflowershop.data.model.order.OrderStatus
 import com.example.sweetflowershop.data.model.voucher.Voucher
 import com.example.sweetflowershop.databinding.ItemOrderBinding
 import com.example.sweetflowershop.network.apiService._Constant
+import com.example.sweetflowershop.ui.view.CreateReviewActivity
 import com.example.sweetflowershop.ui.view.order.CheckoutActivity
 import com.example.sweetflowershop.ui.view.order.OrderDetailActivity
 import com.example.sweetflowershop.ui.view.voucher.ChooseVoucherActivity
@@ -63,7 +64,15 @@ class OrderHistoryAdapter(
                 "SENT" -> binding.idStatus.text = "Đang giao hàng"
                 "RECEIVED" -> {
                     binding.idStatus.text = "Đã giao hàng"
-                    binding.button.text = "Đánh giá"
+                    if (!orderHistoryItem.reviewed)
+                    {
+                        binding.button.text = "Đánh giá"
+                        binding.button.setOnClickListener {
+                            val intent = Intent(context, CreateReviewActivity::class.java)
+                            intent.putExtra("orderHistoryItem", orderHistoryItem)
+                            context.startActivity(intent)
+                        }
+                    }
                 }
                 "CANCELLED" -> {
                     binding.idStatus.text = "Đã huỷ"

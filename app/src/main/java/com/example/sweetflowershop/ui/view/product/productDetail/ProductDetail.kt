@@ -41,7 +41,7 @@ class ProductDetail : AppCompatActivity() {
 
         // Set product details to UI elements
         binding.tvProductDetailName.text = product.name.toString()
-        binding.tvProductDetailPrice.text = "$" + product.price
+        binding.tvProductDetailPrice.text = product.price+"đ"
         binding.details.text = product.details
         binding.delivery.text = product.delivery
         binding.description.text = product.description

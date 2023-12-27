@@ -11,14 +11,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sweetflowershop.R
+import com.example.sweetflowershop.data.model.voucher.Voucher
 import com.example.sweetflowershop.databinding.FragmentAccountBinding
+import com.example.sweetflowershop.ui.view.address.ChooseAddressActivity
 import com.example.sweetflowershop.ui.view.order.ViewOrderHistoryActivity
+import com.example.sweetflowershop.ui.view.voucher.ChooseVoucherActivity
 import com.example.sweetflowershop.ui.viewmodel.AccountViewModel
+import com.example.sweetflowershop.ui.viewmodel.VoucherViewModel
 
 class AccountFragment : Fragment() {
 
     private lateinit var accountViewModel: AccountViewModel
     private lateinit var binding: FragmentAccountBinding
+    private lateinit var voucherViewModel: VoucherViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +33,7 @@ class AccountFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false)
 
         accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
+        voucherViewModel = ViewModelProvider(this).get(VoucherViewModel::class.java)
 
         accountViewModel.accountLiveData.observe(viewLifecycleOwner, Observer { account ->
             Log.d("AccountFragment", "Observer called with account: $account")
@@ -54,8 +60,34 @@ class AccountFragment : Fragment() {
             startActivity(intent)
         }
 
+        voucherViewModel = ViewModelProvider(this).get(VoucherViewModel::class.java)
+
+        binding.promoCodes.setOnClickListener {
+            // Gọi phương thức fetchVouchers từ voucherViewModel
+            voucherViewModel.fetchVouchers(requireContext())
+        }
+
+        binding.shippingAddressCardProfilePage.setOnClickListener{
+            val intent = Intent(requireContext(), ChooseAddressActivity::class.java)
+            startActivity(intent)
+        }
+
+        voucherViewModel.vouchersLiveData.observe(viewLifecycleOwner, Observer { vouchers ->
+            vouchers?.let {
+                // Gọi hàm openChooseVoucherActivity và truyền vào danh sách vouchers
+                openChooseVoucherActivity(it)
+            }
+        })
+
         return binding.root
     }
+
+    private fun openChooseVoucherActivity(vouchers: List<Voucher>) {
+        val intent = Intent(requireContext(), ChooseVoucherActivity::class.java)
+        intent.putExtra("voucherList", ArrayList(vouchers))
+        startActivity(intent)
+    }
+
 
     private fun fetchAccount() {
         accountViewModel.fetchAccount(requireContext())

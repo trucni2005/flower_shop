@@ -21,6 +21,7 @@ data class OrderHistory(
     var address: String? = null,
     var paymentOnline: Boolean = false,
     var shipPrice: Long? = null,
-    var orderDetailHistories: List<OrderDetailHistory>? = null
+    var orderDetailHistories: List<OrderDetailHistory>? = null,
+    val reviewed: Boolean
 ): Serializable
 

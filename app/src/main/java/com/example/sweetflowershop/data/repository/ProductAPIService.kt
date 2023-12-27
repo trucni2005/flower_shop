@@ -14,6 +14,14 @@ class ProductAPIService {
         return api.getProducts()
     }
 
+    fun getFlashSaleProduct(): Single<List<Product>> {
+        return api.getFlashSaleProduct()
+    }
+
+    fun getBestSellerProduct(): Single<List<Product>> {
+        return api.getBestSellerProduct()
+    }
+
     fun getProductsbyCategory(categoryId: Int): Single<List<Product>> {
         return api.getProductsbyCategory(categoryId)
     }

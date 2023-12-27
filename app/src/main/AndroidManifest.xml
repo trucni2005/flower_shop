@@ -3,23 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/hoa"
         android:label="Sweet Flower"
         android:roundIcon="@drawable/disabled_rounded_blue_button"
         android:supportsRtl="true"
         android:theme="@style/Theme.SweetFlowerShop"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.view.main.MainActivity"
             android:exported="true"
@@ -32,169 +28,25 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.view.product.productDetail.ProductDetail" android:exported="true" />
+        <activity android:name=".ui.view.product.productsByCategory.ProductsByCategory" android:exported="true" />
+        <activity android:name=".ui.view.CreateReviewActivity" android:exported="true" />
+        <activity android:name=".ui.view.login.LoginActivity" android:exported="true" />
+        <activity android:name=".ui.view.verifyByEmail.VerifyByEmail" android:exported="true" />
+        <activity android:name=".ui.view.register.RegisterActivity" android:exported="true" />
+        <activity android:name=".ui.view.forgotPassword.ForgotPasswordActivity" android:exported="true" />
+        <activity android:name=".ui.view.forgotPassword.InputNewPasswordActivity" android:exported="true" />
+        <activity android:name=".ui.view.cart.CartActivity" android:exported="true" />
+        <activity android:name=".ui.view.account.CustomerInformationActivity" android:exported="true" />
+        <activity android:name=".ui.view.address.ChooseAddressActivity" android:exported="true" />
+        <activity android:name=".ui.view.address.AddAddressActivity" android:exported="true" />
+        <activity android:name=".ui.view.order.CheckoutActivity" android:exported="true" />
+        <activity android:name=".ui.view.voucher.ChooseVoucherActivity" android:exported="true" />
+        <activity android:name=".ui.view.order.PaymentActivity" android:exported="true" />
+        <activity android:name=".ui.view.order.WaitingForPaymentActivity" android:exported="true" />
+        <activity android:name=".ui.view.order.OrderSuccessFulActivity" android:exported="true" />
 
-        <activity android:name=".ui.view.product.productDetail.ProductDetail"
-            android:exported="true">
-
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-        </activity>
-
-        <activity android:name=".ui.view.product.productsByCategory.ProductsByCategory"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <activity android:name=".ui.view.login.LoginActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <activity android:name=".ui.view.verifyByEmail.VerifyByEmail"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <activity android:name=".ui.view.register.RegisterActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <activity android:name=".ui.view.forgotPassword.ForgotPasswordActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <activity android:name=".ui.view.forgotPassword.InputNewPasswordActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <activity android:name=".ui.view.cart.CartActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.cart.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".ui.view.account.CustomerInformationActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.cart.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.view.address.ChooseAddressActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.cart.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.view.address.AddAddressActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.cart.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.view.order.CheckoutActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.cart.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.view.voucher.ChooseVoucherActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.cart.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.view.order.PaymentActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.cart.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.view.order.WaitingForPaymentActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.cart.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.view.order.OrderSuccessFulActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.cart.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+        <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts" />
 
         <service
             android:name=".network.apiService.MyFirebaseMessagingService"
@@ -204,15 +56,9 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".ui.view.order.ViewOrderHistoryActivity"
-            android:exported="false">
-        </activity>
-
-        <activity
-            android:name=".ui.view.order.OrderDetailActivity"
-            android:exported="false">
-        </activity>
+        <activity android:name=".ui.view.order.ViewOrderHistoryActivity" android:exported="false" />
+        <activity android:name=".ui.view.order.OrderDetailActivity" android:exported="false" />
+        <activity android:name=".ui.view.ChatActivity" android:exported="false" />
 
     </application>
 

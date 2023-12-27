@@ -5,7 +5,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_order"
@@ -23,12 +25,12 @@
                 android:id="@+id/id_order"
                 android:text="@string/orderid_order_id"
                 android:textStyle="bold"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:layout_marginLeft="5dp"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:textColor="@color/textAd"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="50dp"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -69,12 +71,13 @@
                         <TextView
                             android:id="@+id/tv_name"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="15dp"
                             android:text="TextView"
-                            android:textColor="#F59794"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/mainText"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/poppins_medium" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -86,21 +89,20 @@
                                 android:layout_weight="1"
                                 android:layout_marginTop="4dp"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_semibold"
+                                android:fontFamily="@font/poppins_medium"
                                 android:textColor="@color/item_value_text_color"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
+                                android:textSize="15sp"
                                 android:text="999$" />
 
                             <TextView
+                                android:fontFamily="@font/poppins_medium"
                                 android:id="@+id/tv_item_quantity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:gravity="end"
                                 android:textColor="@color/item_value_text_color"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
+                                android:textSize="15sp"
                                 android:text="Số lượng: 3" />
                         </LinearLayout>
                     </LinearLayout>
@@ -125,12 +127,12 @@
                 <!-- TextView -->
                 <TextView
                     android:id="@+id/id_view_more"
-                    android:text="Xem thêm"
-                    android:textStyle="bold"
+                    android:text="Xem thêm sản phẩm"
                     android:padding="5dp"
                     android:layout_marginLeft="5dp"
-                    android:textSize="20dp"
+                    android:textSize="12dp"
                     android:textColor="#C1C1C1"
+                    android:fontFamily="@font/poppins_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/upper_line"
@@ -150,10 +152,10 @@
                 <TextView
                     android:id="@+id/id_status"
                     android:text="Đơn hàng đang trên đường giao"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_semibold"
                     android:padding="5dp"
                     android:layout_marginLeft="5dp"
-                    android:textSize="20dp"
+                    android:textSize="12dp"
                     android:textColor="@color/mainText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -184,10 +186,9 @@
                     android:layout_marginLeft="10dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:fontFamily="@font/poppins_medium"
                     android:textColor="#B8B8B8"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:textSize="14sp"
                     android:text="12-10-2023" />
 
                 <Button
@@ -196,11 +197,12 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:text="Xem thêm"
                     android:background="@drawable/button_item_order"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>

@@ -15,6 +15,12 @@ interface ProductsAPI {
     @GET("product")
     fun getProducts(): Single<List<Product>>
 
+    @GET("product-flash-sale")
+    fun getFlashSaleProduct(): Single<List<Product>>
+
+    @GET("product-best-seller")
+    fun getBestSellerProduct(): Single<List<Product>>
+
     @GET("product")
     fun getProductsbyCategory(
         @Query("categoryId") categoryId: Int

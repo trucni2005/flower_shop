@@ -23,9 +23,10 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/mainText"
         app:titleTextColor="#fff"
+        app:titleMargin="5dp"
         android:importantForContentCapture="auto"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="SHOPPING CART">
+        app:title="GIỎ HÀNG">
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -33,10 +34,10 @@
         android:id="@+id/rv_cartitems"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@id/layout1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -57,7 +58,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="TOTAL BILL: "
             android:textColor="@color/mainText"
-            android:textSize="20sp"></TextView>
+            android:textSize="15sp"></TextView>
 
         <TextView
             android:id="@+id/tv_total_cart"
@@ -67,7 +68,7 @@
             android:text="0$"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="#000000"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold"></TextView>
     </LinearLayout>
 
@@ -90,7 +91,7 @@
             android:backgroundTint="@color/mainText"
             android:fontFamily="@font/poppins_semibold"
             android:letterSpacing="0.1"
-            android:text="CHECKOUT NOW "
+            android:text="MUA HÀNG"
             android:textColor="#fff"
             android:textSize="16sp"></Button>
     </LinearLayout>

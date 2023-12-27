@@ -10,6 +10,7 @@
     <color name="mainText">#fa8196</color>
     <color name="textAd">#000000</color>
     <color name="background">#FBFBFB</color>
+    <color name="line">#EAEAEA</color>
 
     <color name="colorThemePink">#ED2173</color>
     <color name="colorThemeOrange">#F4442d</color>

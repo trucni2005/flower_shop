@@ -75,8 +75,14 @@ class OrderViewModel : ViewModel() {
         Log.d("AddressId", addressId.toString())
         val token = context.getAuthorizationToken()
 
+
         if (!token.isNullOrEmpty()) {
-            orderApiService.confirmOrder(token, OrderToSend(addressId, voucherId, paymentOnline, note))
+            var temp = voucherId;
+            if (temp?.toInt() == -1)
+            {
+                temp = null
+            }
+            orderApiService.confirmOrder(token, OrderToSend(addressId, temp, paymentOnline, note))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<Payment>() {
@@ -92,7 +98,8 @@ class OrderViewModel : ViewModel() {
                             ContextCompat.startActivity(context, intent, null)
                         } catch (e: ActivityNotFoundException) {
                             Toast.makeText(context, "No web browser found", Toast.LENGTH_SHORT).show()
-                        }}
+                        }
+                        }
                     }
 
                     override fun onError(e: Throwable) {

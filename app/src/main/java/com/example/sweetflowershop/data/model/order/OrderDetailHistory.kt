@@ -9,6 +9,7 @@ data class OrderDetailHistory (
     val nameProduct: String,
     val  priceProduct: Long,
     val quantity: Int,
-    val reviewed: Boolean,
-    val image: String
+    val image: String,
+    var rating: Int,
+    var content: String
 ): Serializable

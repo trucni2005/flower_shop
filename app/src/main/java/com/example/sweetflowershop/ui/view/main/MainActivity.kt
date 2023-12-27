@@ -14,6 +14,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.ui.view.account.AccountFragment
 import com.example.sweetflowershop.ui.view.login.LoginActivity
+import com.example.sweetflowershop.ui.view.notification.NotificationFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.action_home -> viewPager.currentItem = 0
                     R.id.action_category -> viewPager.currentItem = 1
                     R.id.action_account -> viewPager.currentItem = 2
+                    R.id.action_notification -> viewPager.currentItem = 3
                 }
                 true
             }
@@ -78,12 +80,13 @@ class MainActivity : AppCompatActivity() {
                 0 -> HomeFragment()
                 1 -> CategoryFragment()
                 2 -> AccountFragment()
+                3 -> NotificationFragment()
                 else -> HomeFragment()
             }
         }
 
         override fun getCount(): Int {
-            return 3
+            return 4
         }
     }
 }

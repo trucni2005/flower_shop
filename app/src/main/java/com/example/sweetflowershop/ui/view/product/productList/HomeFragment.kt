@@ -4,25 +4,30 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.sweetflowershop.R
-import com.example.sweetflowershop.databinding.FragmentHomeBinding
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import com.example.sweetflowershop.ui.adapter.ProductsAdapter
-import com.squareup.picasso.Picasso
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sweetflowershop.R
+import com.example.sweetflowershop.databinding.FragmentHomeBinding
+import com.example.sweetflowershop.ui.adapter.FlashSaleProductAdapter
+import com.example.sweetflowershop.ui.adapter.ProductsAdapter
+import com.example.sweetflowershop.ui.view.ChatActivity
 import com.example.sweetflowershop.ui.view.cart.CartActivity
 import com.example.sweetflowershop.ui.viewmodel.HomeViewModel
+import com.squareup.picasso.Picasso
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
     private lateinit var productsAdapter: ProductsAdapter
+    private lateinit var flashSaleProductsAdapter: FlashSaleProductAdapter
+    private lateinit var bestSellerProductsAdapter: FlashSaleProductAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,27 +44,62 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.btnMessage.setOnClickListener {
+            val intent = Intent(requireContext(), ChatActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.filterProducts(newText)
+                return true
+            }
+        })
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-        productsAdapter = ProductsAdapter(emptyList()) // Sử dụng danh sách rỗng ban đầu
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        productsAdapter = ProductsAdapter(emptyList())
+        flashSaleProductsAdapter = FlashSaleProductAdapter(emptyList())
+        bestSellerProductsAdapter = FlashSaleProductAdapter(emptyList())
 
         binding.rvProducts.adapter = productsAdapter
         binding.rvProducts.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        binding.rvFlashsale.adapter = flashSaleProductsAdapter
+        binding.rvFlashsale.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        binding.rvBestseller.adapter = bestSellerProductsAdapter
+        binding.rvBestseller.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.productsLiveData.observe(viewLifecycleOwner, Observer { products ->
             productsAdapter.setData(products)
         })
 
-        viewModel.fetchProducts()
+        viewModel.flashSaleProductsLiveData.observe(viewLifecycleOwner, Observer { flashSaleProducts ->
+            flashSaleProductsAdapter.setData(flashSaleProducts)
+        })
 
-        ActionSlider()
+        viewModel.bestSellerProductsLiveData.observe(viewLifecycleOwner, Observer { bestSellerProducts ->
+            bestSellerProductsAdapter.setData(bestSellerProducts)
+        })
+
+        viewModel.fetchProducts()
+        viewModel.fetchFlashSaleProducts()
+        viewModel.fetchBestSellerProducts()
+
+        setupSlider()
     }
-    private fun ActionSlider() {
+
+    private fun setupSlider() {
         val viewFlipper = binding.vfSlider
         viewFlipper.startFlipping()
 
@@ -74,7 +114,7 @@ class HomeFragment : Fragment() {
 
         for (imageUrl in imageUrls) {
             val imgView = ImageView(requireContext())
-            Picasso.get().load(imageUrl).into(imgView)
+            Picasso.get().load(imageUrl).fit().into(imgView)
             imgView.scaleType = ImageView.ScaleType.FIT_XY
             viewFlipper.addView(imgView)
         }
@@ -87,5 +127,4 @@ class HomeFragment : Fragment() {
         viewFlipper.inAnimation = slideIn
         viewFlipper.outAnimation = slideOut
     }
-
 }
