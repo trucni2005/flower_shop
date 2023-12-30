@@ -15,7 +15,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.product.Product
-import com.example.sweetflowershop.ui.view.product.productDetail.ProductDetail
+import com.example.sweetflowershop.ui.view.product.ProductDetail
 import com.example.sweetflowershop.data.repository.ProductAPIService
 import com.example.sweetflowershop.network.apiService._Constant
 import com.example.sweetflowershop.ui.view.login.LoginActivity

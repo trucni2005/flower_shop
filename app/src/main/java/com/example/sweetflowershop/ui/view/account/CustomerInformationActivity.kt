@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.customer_account.Account
 import com.example.sweetflowershop.data.model.customer_account.AccountInformation
@@ -143,6 +144,7 @@ class CustomerInformationActivity : AppCompatActivity() {
             return byteArrayOutputStream.toByteArray()
         }
 
+
         override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             super.onActivityResult(requestCode, resultCode, data)
 
@@ -159,6 +161,7 @@ class CustomerInformationActivity : AppCompatActivity() {
                     Glide.with(this)
                         .asBitmap()
                         .load(bitmap)
+                        .apply(RequestOptions().dontTransform())
                         .into(binding.ivUserPhoto)
 
                     Toast.makeText(this, "Image converted to Base64", Toast.LENGTH_SHORT).show()

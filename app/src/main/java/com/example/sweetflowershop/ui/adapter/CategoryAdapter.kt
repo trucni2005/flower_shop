@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.category.Category
-import com.example.sweetflowershop.ui.view.product.productsByCategory.ProductsByCategory
+import com.example.sweetflowershop.ui.view.product.ProductsByCategory
 import com.squareup.picasso.Picasso
 
 class CategoryAdapter(private var categories: List<Category>) :

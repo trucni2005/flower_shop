@@ -28,8 +28,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.view.product.productDetail.ProductDetail" android:exported="true" />
-        <activity android:name=".ui.view.product.productsByCategory.ProductsByCategory" android:exported="true" />
+        <activity android:name=".ui.view.product.ProductDetail" android:exported="true" />
+        <activity android:name=".ui.view.product.ProductsByCategory" android:exported="true" />
         <activity android:name=".ui.view.CreateReviewActivity" android:exported="true" />
         <activity android:name=".ui.view.login.LoginActivity" android:exported="true" />
         <activity android:name=".ui.view.verifyByEmail.VerifyByEmail" android:exported="true" />
@@ -59,6 +59,7 @@
         <activity android:name=".ui.view.order.ViewOrderHistoryActivity" android:exported="false" />
         <activity android:name=".ui.view.order.OrderDetailActivity" android:exported="false" />
         <activity android:name=".ui.view.ChatActivity" android:exported="false" />
+        <activity android:name=".ui.view.product.SearchActivity" android:exported="false" />
 
     </application>
 

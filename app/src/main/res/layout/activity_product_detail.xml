@@ -486,7 +486,7 @@ In the rare event that a substitution is necessary when buying a gift, products 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginBottom="20dp"
-                android:id="@+id/RecomRecView_ProductDetailsPage"
+                android:id="@+id/Recommend_rcv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">

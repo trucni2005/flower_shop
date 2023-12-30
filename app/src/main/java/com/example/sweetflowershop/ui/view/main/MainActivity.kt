@@ -1,7 +1,7 @@
 package com.example.sweetflowershop.ui.view.main
 
 import CategoryFragment
-import com.example.sweetflowershop.ui.view.product.productList.HomeFragment
+import com.example.sweetflowershop.ui.view.product.HomeFragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,13 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.navigation.findNavController
 import androidx.viewpager.widget.ViewPager
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.ui.view.account.AccountFragment
 import com.example.sweetflowershop.ui.view.login.LoginActivity
 import com.example.sweetflowershop.ui.view.notification.NotificationFragment
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging

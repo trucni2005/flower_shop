@@ -11,6 +11,7 @@ import com.example.sweetflowershop.data.repository.AccountRepository
 import com.example.sweetflowershop.ui.view.forgotPassword.ForgotPasswordActivity
 import com.example.sweetflowershop.ui.view.main.MainActivity
 import com.example.sweetflowershop.ui.view.register.RegisterActivity
+import com.google.firebase.messaging.FirebaseMessaging
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -60,12 +61,22 @@ class LoginActivity : AppCompatActivity() {
                 .show()
         } else {
             GlobalScope.launch(Dispatchers.IO) {
+
                 val sharedPreferences = getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
+                val token = sharedPreferences.getString("Authorization", "")
+                val fcmToken = sharedPreferences.getString("FCM_TOKEN", "")
+
+
+                Log.d("token", token ?: "Token is null or empty")
+                Log.d("fcm_token", fcmToken ?: "FCM Token is null or empty")
+
+
                 val client = OkHttpClient()
 
                 val jsonBody = JSONObject()
                 jsonBody.put("username", username)
                 jsonBody.put("password", password)
+                jsonBody.put("token", fcmToken)
 
                 val requestBody = jsonBody.toString().toRequestBody("application/json".toMediaType())
 
@@ -87,18 +98,19 @@ class LoginActivity : AppCompatActivity() {
                         val editor = sharedPreferences.edit()
                         editor.putString("Authorization", authorizationHeader)
                         editor.apply()
-                        Log.d("DEBUG", "Authorization saved: $authorizationHeader")
+
                         runOnUiThread {
                             val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             intent.putExtra("shouldLaunchLoginActivity", false)
                             startActivity(intent)
+                            Log.d("DEBUG", "Authorization saved: $authorizationHeader")
                         }
-                    }
-                    else {
-                        Log.d("DEBUG", "Inside else block");
+                    } else {
+                        Log.d("DEBUG", "Inside else block")
                     }
                 }
             }
+
         }
     }
 }

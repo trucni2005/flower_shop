@@ -43,7 +43,6 @@
                     android:layout_width="0dp"
                     android:layout_height="30dp"
                     android:layout_weight="1"
-                    app:iconifiedByDefault="false"
                     android:background="#FFFFFF" />
 
                 <Button
@@ -115,7 +114,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_bestseller"
+            android:id="@+id/rv_flashsale"
             android:layout_width="match_parent"
             android:layout_height="215dp"
             android:layout_marginLeft="5dp"
@@ -167,7 +166,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_flashsale"
+            android:id="@+id/rv_bestseller"
             android:layout_width="match_parent"
             android:layout_height="215dp"
             android:layout_marginLeft="5dp"

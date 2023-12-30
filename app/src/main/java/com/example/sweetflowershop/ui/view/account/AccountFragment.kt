@@ -13,11 +13,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.voucher.Voucher
 import com.example.sweetflowershop.databinding.FragmentAccountBinding
+import com.example.sweetflowershop.network.apiService._Constant
 import com.example.sweetflowershop.ui.view.address.ChooseAddressActivity
+import com.example.sweetflowershop.ui.view.order.PaymentActivity
 import com.example.sweetflowershop.ui.view.order.ViewOrderHistoryActivity
 import com.example.sweetflowershop.ui.view.voucher.ChooseVoucherActivity
 import com.example.sweetflowershop.ui.viewmodel.AccountViewModel
 import com.example.sweetflowershop.ui.viewmodel.VoucherViewModel
+import com.squareup.picasso.Picasso
 
 class AccountFragment : Fragment() {
 
@@ -39,6 +42,9 @@ class AccountFragment : Fragment() {
             Log.d("AccountFragment", "Observer called with account: $account")
             account?.let {
                 binding.account = it
+                val imageUrl =
+                    _Constant.baseUrl_ + "images/customer/${account.avatar}"
+                Picasso.get().load(imageUrl).into(binding.profileImageProfileFrag)
             }
         })
 
@@ -53,6 +59,11 @@ class AccountFragment : Fragment() {
             } ?: run {
                 Log.e("Account", "Account is null")
             }
+        }
+
+        binding.paymentMethodProfilePage.setOnClickListener {
+            val intent = Intent(requireContext(), PaymentActivity::class.java)
+            startActivity(intent)
         }
 
         binding.cvMyOrders.setOnClickListener {

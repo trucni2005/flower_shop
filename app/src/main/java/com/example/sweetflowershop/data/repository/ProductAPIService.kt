@@ -14,6 +14,10 @@ class ProductAPIService {
         return api.getProducts()
     }
 
+    fun getRelatedProducts(product_id: Int): Single<List<Product>> {
+        return api.getRelatedProduct(product_id)
+    }
+
     fun getFlashSaleProduct(): Single<List<Product>> {
         return api.getFlashSaleProduct()
     }

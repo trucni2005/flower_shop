@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="80dp"
     android:orientation="vertical"
     app:cardBackgroundColor="#fff"
     android:layout_marginLeft="0dp"
@@ -19,8 +19,8 @@
 
         <ImageView
             android:id="@+id/ohi_image_url"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@drawable/flower"
             android:scaleType="fitXY"
             android:adjustViewBounds="true" />
@@ -40,7 +40,7 @@
                 android:layout_marginTop="10dp"
                 android:text="TextView"
                 android:textColor="@color/mainText"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/item_value_text_color"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:text="999$" />
 
@@ -66,7 +66,7 @@
                     android:layout_marginTop="4dp"
                     android:gravity="end"
                     android:textColor="@color/item_value_text_color"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:text="Số lượng: 3" />
             </LinearLayout>

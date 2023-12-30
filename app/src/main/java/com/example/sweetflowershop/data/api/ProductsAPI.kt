@@ -15,21 +15,26 @@ interface ProductsAPI {
     @GET("product")
     fun getProducts(): Single<List<Product>>
 
-    @GET("product-flash-sale")
+    @GET("product/flash-sale")
     fun getFlashSaleProduct(): Single<List<Product>>
 
-    @GET("product-best-seller")
+    @GET("product/best-seller")
     fun getBestSellerProduct(): Single<List<Product>>
 
-    @GET("product")
+    @GET("product/search-category/{categoryId}")
     fun getProductsbyCategory(
-        @Query("categoryId") categoryId: Int
+        @Path("categoryId") categoryId: Int
     ): Single<List<Product>>
 
     @GET("review/{product_id}")
     fun getReviewsbyProduct(
         @Path("product_id") product_id: Int
     ): Single<List<Review>>
+
+    @GET("product/related/{product_id}")
+    fun getRelatedProduct(
+        @Path("product_id") product_id: Int
+    ): Single<List<Product>>
 
     @Headers("Content-Type: application/json")
     @GET("cart/add/{product_id}")

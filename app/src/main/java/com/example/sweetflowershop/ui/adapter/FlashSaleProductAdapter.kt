@@ -1,27 +1,16 @@
 package com.example.sweetflowershop.ui.adapter
 
-import android.content.Context
 import android.content.Intent
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.StrikethroughSpan
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.product.Product
 import com.example.sweetflowershop.data.repository.ProductAPIService
 import com.example.sweetflowershop.databinding.FlashSaleItemBinding
 import com.example.sweetflowershop.network.apiService._Constant
-import com.example.sweetflowershop.ui.view.login.LoginActivity
-import com.example.sweetflowershop.ui.view.product.productDetail.ProductDetail
+import com.example.sweetflowershop.ui.view.product.ProductDetail
 import com.squareup.picasso.Picasso
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
 import java.io.Serializable
 
 class FlashSaleProductAdapter(private var flashSaleProducts: List<Product>) :

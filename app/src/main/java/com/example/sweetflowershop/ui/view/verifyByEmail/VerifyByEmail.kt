@@ -5,17 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.sweetflowershop.ui.view.forgotPassword.InputNewPasswordActivity
 import com.example.sweetflowershop.ui.view.main.MainActivity
-import com.example.sweetflowershop.databinding.VerifyByEmailBinding
 import com.example.sweetflowershop.data.repository.AccountRepository
+import com.example.sweetflowershop.databinding.VerifyByEmailBinding
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class VerifyByEmail : AppCompatActivity() {
     private lateinit var binding: VerifyByEmailBinding
     private val accountAPIService = AccountRepository()
-    private var shouldLaunchLoginActivity = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,28 +22,35 @@ class VerifyByEmail : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val otpFromIntent = intent.getStringExtra("otp")
+        val id = intent.getStringExtra("id")
         val username = intent.getStringExtra("username")
         val password = intent.getStringExtra("password")
         val email = intent.getStringExtra("email")
         val phoneNumber = intent.getStringExtra("phoneNumber")
 
         binding.btnSubmit.setOnClickListener {
-            val enteredOTP = binding.etVerificationCode.text.toString()
-
-            if (enteredOTP == otpFromIntent) {
-                Toast.makeText(applicationContext, "OTP đúng!", Toast.LENGTH_SHORT).show()
-                if (email != "") {
-                    performRegistration(username, password, email, phoneNumber)
-                }
-                else
-                {
-                    val intent = Intent(this, InputNewPasswordActivity::class.java)
-                    intent.putExtra("username", username)
-                    startActivity(intent)
-                }
-            } else {
-                Toast.makeText(applicationContext, "OTP không đúng!", Toast.LENGTH_SHORT).show()
+            val otp = binding.etVerificationCode.text.toString()
+            if (id != null) {
+                accountAPIService.verifyOTP(id, otp)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { accountModel ->
+                            if (accountModel.success) {
+                                val successMessage = accountModel.message
+                                performRegistration(username, password, email, phoneNumber)
+                            } else {
+                                val errorMessage = accountModel.message
+                                Log.e("DEBUG", "Verify OTP failed. Message: $errorMessage")
+                                // Handle verification failure
+                            }
+                        },
+                        { throwable ->
+                            Log.e("DEBUG", "Error occurred during OTP verification: ${throwable.message}")
+                            throwable.printStackTrace()
+                            // Handle error during OTP verification
+                        }
+                    )
             }
         }
     }
@@ -63,18 +68,18 @@ class VerifyByEmail : AppCompatActivity() {
                             navigateToHomeFragment()
                         } else {
                             val errorMessage = accountModel.message
-                            Log.e("DEBUG", "Đăng ký không thành công. Message: $errorMessage")
-                            // Xử lý khi đăng ký thất bại
+                            Log.e("DEBUG", "Registration failed. Message: $errorMessage")
+                            // Handle registration failure
                         }
                     },
                     { throwable ->
-                        Log.e("DEBUG", "Lỗi xảy ra: ${throwable.message}")
-                        throwable.printStackTrace() // In lỗi ra màn hình
-                        // Xử lý khi có lỗi xảy ra
+                        Log.e("DEBUG", "Error occurred during registration: ${throwable.message}")
+                        throwable.printStackTrace()
+                        // Handle error during registration
                     }
                 )
         } else {
-            // Xử lý khi các thông tin không hợp lệ
+            // Handle case where information is invalid or missing
         }
     }
 

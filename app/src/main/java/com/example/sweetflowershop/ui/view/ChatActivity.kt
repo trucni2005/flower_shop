@@ -32,21 +32,21 @@ class ChatActivity : AppCompatActivity() {
 
         messageAdapter.notifyDataSetChanged()
         binding.rcvMessage.scrollToPosition(messages.size - 1)
-        binding.btnSend.setOnClickListener {
-            sendMessage()
-        }
+//        binding.btnSend.setOnClickListener {
+//            sendMessage()
+//        }
     }
 
-    private fun sendMessage() {
-        val message = binding.editTextMessage.text.toString().trim()
-        if (message.isNotEmpty()) {
-            val currentTime = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
-            val newMessage = Message("user", currentTime, message)
-            messageAdapter.addMessage(newMessage)
-            messageAdapter.notifyDataSetChanged()
-
-            binding.editTextMessage.text.clear()
-            binding.rcvMessage.scrollToPosition(messageAdapter.itemCount - 1)
-        }
-    }
+//    private fun sendMessage() {
+//        val message = binding.editTextMessage.text.toString().trim()
+//        if (message.isNotEmpty()) {
+//            val currentTime = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date())
+//            val newMessage = Message("user", currentTime, message)
+//            messageAdapter.addMessage(newMessage)
+//            messageAdapter.notifyDataSetChanged()
+//
+//            binding.editTextMessage.text.clear()
+//            binding.rcvMessage.scrollToPosition(messageAdapter.itemCount - 1)
+//        }
+//    }
 }

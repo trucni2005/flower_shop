@@ -36,7 +36,7 @@
                 android:layout_marginStart="20sp"
                 android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/item_value_text_color"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:text="@{item.product.name}" />
 
             <LinearLayout
@@ -52,7 +52,7 @@
                     android:layout_marginTop="@dimen/rv_item_price_marginTop"
                     android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/item_value_text_color"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginStart="20sp"
                     android:text="@{String.valueOf(item.product.price) + `đ`}" />
@@ -64,7 +64,7 @@
                     android:layout_marginTop="4dp"
                     android:gravity="end"
                     android:textColor="@color/item_value_text_color"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     android:text="@{`Số lượng: ` + item.quantity}" />
             </LinearLayout>

@@ -7,6 +7,7 @@ import com.example.sweetflowershop.data.model.customer_account.AccountModel
 import com.example.sweetflowershop.data.model.customer_account.AccountRequest
 import com.example.sweetflowershop.data.model.customer_account.ForgotPasswordRequest
 import com.example.sweetflowershop.data.model.customer_account.LoginResponse
+import com.example.sweetflowershop.data.model.customer_account.Otp
 import io.reactivex.rxjava3.core.Observable
 
 class AccountRepository {
@@ -19,6 +20,13 @@ class AccountRepository {
         phone: String
     ): Observable<AccountModel> {
         return api.verifyEmail(AccountRequest(username, password, email, phone))
+    }
+
+    fun verifyOTP(
+        id: String,
+        otp: String
+    ): Observable<AccountModel> {
+        return api.verifyOTP(Otp(id, otp))
     }
 
     fun register(

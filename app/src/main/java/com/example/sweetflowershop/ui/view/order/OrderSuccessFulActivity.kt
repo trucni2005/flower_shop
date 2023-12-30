@@ -1,16 +1,13 @@
 package com.example.sweetflowershop.ui.view.order
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sweetflowershop.databinding.ActivityOrderSuccessfulBinding
 import com.example.sweetflowershop.ui.view.main.MainActivity
-import com.example.sweetflowershop.ui.view.product.productList.HomeFragment
 
 class OrderSuccessFulActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOrderSuccessfulBinding
