@@ -1,62 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sweet Flower Shop - README</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-    }
-
-    img {
-      display: block;
-      margin: 0 auto;
-      max-width: 100%;
-      height: auto;
-    }
-
-    h2 {
-      color: #4CAF50;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    li::before {
-      content: "🔹 ";
-      color: #4CAF50;
-      margin-right: 5px;
-    }
-
-    pre {
-      background-color: #f5f5f5;
-      padding: 10px;
-      border-radius: 5px;
-      overflow-x: auto;
-    }
-
-    blockquote {
-      background-color: #f5f5f5;
-      border-left: 5px solid #4CAF50;
-      padding: 10px;
-      margin: 10px 0;
-    }
-  </style>
-</head>
-
 <body>
 
   <h1>Sweet Flower Shop - README</h1>
@@ -147,20 +90,6 @@
 
   <h2>Contribution and Feedback 🤝</h2>
   <p>We welcome contributions from the community. Please feel free to open issues or create pull requests if you have any suggestions.</p>
-
-  <h2>Author 📝</h2>
-  <ul>
-    <li>
-      <strong>Name:</strong> [Your Name]
-    </li>
-    <li>
-      <strong>Contact:</strong> [Your Email]
-    </li>
-  </ul>
-
-  <h2>License 📄</h2>
-  <p>[Explanation of the license for the application]</p>
-
 </body>
 
 </html>
