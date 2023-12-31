@@ -3,11 +3,6 @@
 <body>
 
   <h1>Sweet Flower Shop - README</h1>
-
-  <p align="center">
-    <img src="app_icon.png" alt="Sweet Flower Shop Icon" width="100">
-  </p>
-
   <h2>Description 🌸</h2>
   <p>
     Welcome to Sweet Flower Shop, an exquisite E-commerce app meticulously crafted with Kotlin to provide you
