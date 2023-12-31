@@ -56,27 +56,27 @@
 
   <h2>Screenshots 🖼️</h2>
 <p align="center">
-  <img src="screenshots/1.jpg" alt="Screenshot 3" width="200">
-  <img src="screenshots/2.jpg" alt="Screenshot 4" width="200">
-  <img src="screenshots/3.jpg" alt="Screenshot 5" width="200">
-  <img src="screenshots/4.jpg" alt="Screenshot 6" width="200">
-  <img src="screenshots/5.jpg" alt="Screenshot 7" width="200">
-  <img src="screenshots/6.jpg" alt="Screenshot 8" width="200">
-  <img src="screenshots/7.jpg" alt="Screenshot 9" width="200">
-  <img src="screenshots/8.jpg" alt="Screenshot 10" width="200">
-  <img src="screenshots/9.jpg" alt="Screenshot 11" width="200">
-  <img src="screenshots/10.jpg" alt="Screenshot 12" width="200">
-  <img src="screenshots/11.jpg" alt="Screenshot 13" width="200">
-  <img src="screenshots/12.jpg" alt="Screenshot 14" width="200">
-  <img src="screenshots/13.jpg" alt="Screenshot 15" width="200">
-  <img src="screenshots/14.jpg" alt="Screenshot 16" width="200">
-  <img src="screenshots/15.jpg" alt="Screenshot 17" width="200">
-  <img src="screenshots/16.jpg" alt="Screenshot 18" width="200">
-  <img src="screenshots/17.jpg" alt="Screenshot 19" width="200">
-  <img src="screenshots/18.jpg" alt="Screenshot 20" width="200">
-  <img src="screenshots/19.jpg" alt="Screenshot 21" width="200">
-  <img src="screenshots/20.jpg" alt="Screenshot 22" width="200">
-  <img src="screenshots/21.jpg" alt="Screenshot 23" width="200">
+  <img src="screenshots/1.jpg" alt="Screenshot 1" width="100">
+  <img src="screenshots/2.jpg" alt="Screenshot 2" width="100">
+  <img src="screenshots/3.jpg" alt="Screenshot 3" width="100">
+  <img src="screenshots/4.jpg" alt="Screenshot 4" width="100">
+  <img src="screenshots/5.jpg" alt="Screenshot 5" width="100">
+  <img src="screenshots/6.jpg" alt="Screenshot 6" width="100">
+  <img src="screenshots/7.jpg" alt="Screenshot 7" width="100">
+  <img src="screenshots/8.jpg" alt="Screenshot 8" width="100">
+  <img src="screenshots/9.jpg" alt="Screenshot 9" width="100">
+  <img src="screenshots/10.jpg" alt="Screenshot 10" width="100">
+  <img src="screenshots/11.jpg" alt="Screenshot 11" width="100">
+  <img src="screenshots/12.jpg" alt="Screenshot 12" width="100">
+  <img src="screenshots/13.jpg" alt="Screenshot 13" width="100">
+  <img src="screenshots/14.jpg" alt="Screenshot 14" width="100">
+  <img src="screenshots/15.jpg" alt="Screenshot 15" width="100">
+  <img src="screenshots/16.jpg" alt="Screenshot 16" width="100">
+  <img src="screenshots/17.jpg" alt="Screenshot 17" width="100">
+  <img src="screenshots/18.jpg" alt="Screenshot 18" width="100">
+  <img src="screenshots/19.jpg" alt="Screenshot 19" width="100">
+  <img src="screenshots/20.jpg" alt="Screenshot 20" width="100">
+  <img src="screenshots/21.jpg" alt="Screenshot 21" width="100">
 </p>
 
 
