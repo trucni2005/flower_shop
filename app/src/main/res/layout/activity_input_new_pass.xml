@@ -29,7 +29,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
             android:includeFontPadding="false"
-            android:text="Please enter new password"
+            android:text="NHẬP MẬT KHẨU MỚI"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/mainText"
@@ -47,7 +47,7 @@
             android:backgroundTint="#fff"
             android:drawablePadding="16dp"
             android:fontFamily="@font/poppins_regular"
-            android:hint="Enter your new password"
+            android:hint="Nhập mật khẩu mới của bạn"
             android:textColorHint="#cbcad1"
             android:layout_marginBottom="20dp"
             android:textSize="16sp"></EditText>
@@ -63,7 +63,7 @@
             android:backgroundTint="#fff"
             android:drawablePadding="16dp"
             android:fontFamily="@font/poppins_regular"
-            android:hint="Re-enter your new password"
+            android:hint="Nhập lại mật khẩu mới của bạn"
             android:textColorHint="#cbcad1"
             android:layout_marginBottom="20dp"
             android:textSize="16sp"></EditText>
@@ -80,7 +80,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:letterSpacing="0.1"
             android:pointerIcon="hand"
-            android:text="NEXT"
+            android:text="TIẾP TỤC"
             android:textColor="#fff"
             android:textSize="20sp"></Button>
 

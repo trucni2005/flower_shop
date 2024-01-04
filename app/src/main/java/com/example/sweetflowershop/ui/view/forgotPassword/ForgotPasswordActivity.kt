@@ -39,8 +39,11 @@ class ForgotPasswordActivity: AppCompatActivity() {
                             .subscribe { accountModel ->
                                 if (accountModel.success) {
                                     val successMessage = accountModel.message
-                                    Log.d("DEBUG", "Đăng ký thành công. Message: $successMessage")
+                                    Log.d("DEBUG", "Tạo quên mật khẩu thành công. Message: $successMessage")
                                     val bundle = Bundle()
+                                    bundle.putString("request", "1")
+                                    bundle.putString("id", successMessage)
+                                    bundle.putString("username", username)
                                     val intent = Intent(this, VerifyByEmail::class.java)
                                     intent.putExtras(bundle)
                                     startActivity(intent)

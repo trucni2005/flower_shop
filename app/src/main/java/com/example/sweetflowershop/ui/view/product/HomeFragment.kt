@@ -97,18 +97,17 @@ class HomeFragment : Fragment() {
         val viewFlipper = binding.vfSlider
         viewFlipper.startFlipping()
 
-        val imageUrls = listOf(
-            "https://assets.flowerstore.ph/public/tenantPH/app/assets/images/banner/747_PRoA5mYfuRnpS2AKnUfJpndMw.webp",
-            "https://cdn.euroflorist.com/cmspr/Uk/2016widepromo26.webp",
-            "https://assets.flowerstore.ph/public/tenantPH/app/assets/images/banner/747_Gao72BRYYsDbvFMm2llsBr13Y.webp",
-            "https://cdn.euroflorist.com/cmspr/Uk/2016widepromo26.webp",
-            "https://assets.flowerstore.ph/public/tenantPH/app/assets/images/banner/747_TES1lgnM2Ynzy0cNb8IdYFU5R.webp",
-            "https://cdn.euroflorist.com/cmspr/Uk/catpromo2018_plantswide0.webp"
+        // Replace these resource IDs with your actual drawable resource IDs
+        val imageResourceIds = arrayOf(
+            R.drawable.image1,
+            R.drawable.image2,
+            R.drawable.image3,
+            R.drawable.image4
         )
 
-        for (imageUrl in imageUrls) {
+        for (imageResourceId in imageResourceIds) {
             val imgView = ImageView(requireContext())
-            Picasso.get().load(imageUrl).fit().into(imgView)
+            imgView.setImageResource(imageResourceId)
             imgView.scaleType = ImageView.ScaleType.FIT_XY
             viewFlipper.addView(imgView)
         }
@@ -121,4 +120,5 @@ class HomeFragment : Fragment() {
         viewFlipper.inAnimation = slideIn
         viewFlipper.outAnimation = slideOut
     }
+
 }

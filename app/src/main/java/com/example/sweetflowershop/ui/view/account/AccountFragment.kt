@@ -15,6 +15,7 @@ import com.example.sweetflowershop.data.model.voucher.Voucher
 import com.example.sweetflowershop.databinding.FragmentAccountBinding
 import com.example.sweetflowershop.network.apiService._Constant
 import com.example.sweetflowershop.ui.view.address.ChooseAddressActivity
+import com.example.sweetflowershop.ui.view.main.MainActivity
 import com.example.sweetflowershop.ui.view.order.PaymentActivity
 import com.example.sweetflowershop.ui.view.order.ViewOrderHistoryActivity
 import com.example.sweetflowershop.ui.view.voucher.ChooseVoucherActivity
@@ -61,10 +62,16 @@ class AccountFragment : Fragment() {
             }
         }
 
-        binding.paymentMethodProfilePage.setOnClickListener {
-            val intent = Intent(requireContext(), PaymentActivity::class.java)
+        binding.constraintLogout.setOnClickListener {
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            intent.putExtra("shouldLaunchLoginActivity", true)
             startActivity(intent)
         }
+
+//        binding.paymentMethodProfilePage.setOnClickListener {
+//            val intent = Intent(requireContext(), PaymentActivity::class.java)
+//            startActivity(intent)
+//        }
 
         binding.cvMyOrders.setOnClickListener {
             val intent = Intent(requireContext(), ViewOrderHistoryActivity::class.java)

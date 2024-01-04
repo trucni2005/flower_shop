@@ -14,7 +14,7 @@
         android:layout_marginTop="-50dp"
         android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
-        android:text="WAITING FOR YOUR PAYMENT ..."
+        android:text="ĐỢI THANH TOÁN ..."
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/textAd"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
         android:gravity="center"
-        android:text="Please pay for your order within 15 minutes!"
+        android:text="Vui lòng thanh toán đơn hàng của bạn trong vòng 15 phút!"
         android:textAlignment="center"
         android:textColor="@color/textAd"
         android:textSize="16sp" />

@@ -2,4 +2,13 @@
 <resources>
 
     <style name="Theme.SweetFlowerShop" parent="Theme.AppCompat.Light.DarkActionBar" />
+
+    <style name="textTheme">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="bigTextTheme" parent="textTheme">
+        <item name="android:textSize">17dp</item>
+    </style>
 </resources>

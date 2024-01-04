@@ -393,7 +393,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/lbl_total_amount"
+                        android:text="Tổng thanh toán"
                         android:textColor="@color/item_value_text_color"
                         android:textSize="@dimen/my_order_details_label_value_textSize" />
 

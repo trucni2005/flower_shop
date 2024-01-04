@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="REGISTRATION"
+        android:text="ĐĂNG KÝ TÀI KHOẢN"
         android:letterSpacing="0.1"
-        android:textColor="#F59794"
+        android:textColor="@color/mainText"
         android:textSize="24sp">
     </TextView>
     <TextView
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Please register down below"
+        android:text="Vui lòng nhập tài khoản mới"
         android:textColor="#454054"
         android:textSize="16sp">
     </TextView>
@@ -35,7 +35,7 @@
         android:layout_marginTop="16dp"
         android:layout_gravity="center"
         android:drawablePadding="16dp"
-        android:hint="Username"
+        android:hint="Tên đăng nhập"
         android:textColorHint="#cbcad1"
         android:backgroundTint="#fff"
         android:layout_marginBottom="24dp"
@@ -68,7 +68,7 @@
         android:drawableStart="@drawable/information"
         android:drawablePadding="16dp"
         android:fontFamily="@font/poppins_regular"
-        android:hint="Phone Number"
+        android:hint="Số điện thoại"
         android:textColorHint="#cbcad1"
         android:layout_marginTop="24dp"
         android:textSize="16sp"></EditText>
@@ -82,7 +82,7 @@
         android:layout_gravity="center"
         android:drawablePadding="16dp"
         android:drawableEnd="@drawable/hide"
-        android:hint="Password"
+        android:hint="Mật khẩu"
         android:inputType="textPassword"
         android:textColorHint="#cbcad1"
         android:backgroundTint="#fff"
@@ -98,7 +98,7 @@
         android:layout_height="55dp"
         android:drawablePadding="16dp"
         android:layout_gravity="center"
-        android:hint="Re-enter Password"
+        android:hint="Nhập lại mật khẩu"
         android:inputType="textPassword"
         android:drawableEnd="@drawable/hide"
         android:textColorHint="#cbcad1"
@@ -111,7 +111,7 @@
     <Button
         android:id="@+id/btnSignUp"
         android:fontFamily="@font/poppins_semibold"
-        android:backgroundTint="#F59794"
+        android:backgroundTint="@color/mainText"
         style="@android:style/Widget.Button"
         android:layout_width="340dp"
         android:layout_height="55dp"
@@ -121,7 +121,7 @@
         android:letterSpacing="0.1"
         android:textColor="#fff"
         android:background="@drawable/btn_background"
-        android:text="REGISTER">
+        android:text="ĐĂNG KÝ">
     </Button>
 
     <LinearLayout

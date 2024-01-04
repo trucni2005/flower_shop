@@ -18,7 +18,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/rounder_border_littlebit"
             android:fontFamily="@font/poppins_medium"
-            android:hint="Enter your voucher"
+            android:hint="Nhập mã giảm giá của bạn"
             android:maxLines="1"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"

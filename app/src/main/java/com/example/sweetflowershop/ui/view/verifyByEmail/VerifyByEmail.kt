@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.sweetflowershop.ui.view.main.MainActivity
 import com.example.sweetflowershop.data.repository.AccountRepository
 import com.example.sweetflowershop.databinding.VerifyByEmailBinding
+import com.example.sweetflowershop.ui.view.forgotPassword.InputNewPasswordActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -22,6 +23,7 @@ class VerifyByEmail : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        val request = intent.getStringExtra("request")
         val id = intent.getStringExtra("id")
         val username = intent.getStringExtra("username")
         val password = intent.getStringExtra("password")
@@ -37,8 +39,18 @@ class VerifyByEmail : AppCompatActivity() {
                     .subscribe(
                         { accountModel ->
                             if (accountModel.success) {
+                                Log.e("DEBUG", "Verify OTP Success")
                                 val successMessage = accountModel.message
-                                performRegistration(username, password, email, phoneNumber)
+                                if (request == "0")
+                                {
+                                    Log.e("DEBUG", "Verify OTP Success. REQUEST: Login")
+                                    performRegistration(username, password, email, phoneNumber)
+                                }
+                                else
+                                {
+                                    Log.e("DEBUG", "Verify OTP Success. REQUEST: Foget Password")
+                                    performFogotPassword(username)
+                                }
                             } else {
                                 val errorMessage = accountModel.message
                                 Log.e("DEBUG", "Verify OTP failed. Message: $errorMessage")
@@ -83,9 +95,19 @@ class VerifyByEmail : AppCompatActivity() {
         }
     }
 
+    private fun performFogotPassword(username: String?) {
+        navigateToFogotPasswordFragment(username)
+    }
+
     private fun navigateToHomeFragment() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("shouldLaunchLoginActivity", true)
+        startActivity(intent)
+    }
+
+    private fun navigateToFogotPasswordFragment(username: String?) {
+        val intent = Intent(this, InputNewPasswordActivity::class.java)
+        intent.putExtra("username", username)
         startActivity(intent)
     }
 }

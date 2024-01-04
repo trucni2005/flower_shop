@@ -55,6 +55,7 @@ class RegisterActivity : AppCompatActivity() {
                                     val successMessage = accountModel.message
                                     Log.d("DEBUG", "Đăng ký thành công. Message: $successMessage")
                                     val bundle = Bundle()
+                                    bundle.putString("request", "0")
                                     bundle.putString("id", successMessage)
                                     bundle.putString("username", username)
                                     bundle.putString("password", password)

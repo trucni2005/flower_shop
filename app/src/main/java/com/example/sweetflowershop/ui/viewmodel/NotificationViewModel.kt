@@ -39,6 +39,7 @@ class NotificationViewModel : ViewModel() {
                 .subscribeWith(object : DisposableSingleObserver<List<NotificationData>>() {
                     override fun onSuccess(notifications: List<NotificationData>) {
                         Log.d("NotificationViewModel", "API call success. Received ${notifications.size} notifications.")
+                        Log.d("NotificationViewModel", "Received: $notifications")
                         _notificationList.value = notifications
                     }
 

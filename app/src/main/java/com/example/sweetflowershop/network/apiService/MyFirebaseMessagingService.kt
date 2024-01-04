@@ -19,9 +19,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         Log.d("MyFirebaseMessaging", "Received message: $remoteMessage")
 
         // Lấy dữ liệu từ tin nhắn
-        val title = remoteMessage.data["title"]
-        val body = remoteMessage.data["body"]
-        val data = remoteMessage.data["data"]
+        val title = remoteMessage.notification?.title
+        val body = remoteMessage.notification?.body
+        val data = remoteMessage.data
 
         Log.d("MyFirebaseMessaging", "Title: $title")
         Log.d("MyFirebaseMessaging", "Body: $body")
@@ -29,26 +29,24 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // Xử lý thông điệp
         when (title) {
-            "PAYMENT" -> {
-                if (body == "payment_success") {
+            "Thanh toán thành công" -> {
                     Log.d("MyFirebaseMessaging", "Payment success message received")
                     GlobalScope.launch {
                         val intent = Intent(applicationContext, OrderSuccessFulActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                     }
-                } else if (body == "payment_failed") {
+            }
+            "Thanh toán thất bại" -> {
                     Log.d("MyFirebaseMessaging", "Payment failure message received")
                     GlobalScope.launch {
                         val intent = Intent(applicationContext, CheckoutActivity::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
                     }
-                }
             }
-            // Thêm các trường hợp khác nếu cần thiết
             else -> {
-                val notificationData = Gson().fromJson(data, NotificationData::class.java)
+                val notificationData = Gson().fromJson(data["notification"], NotificationData::class.java)
                 Log.d("MyFirebaseMessaging", "Notification: $notificationData")
                 Log.d("MyFirebaseMessaging", "Unknown title: $title")
             }
