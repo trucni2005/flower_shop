@@ -7,7 +7,7 @@ import com.example.sweetflowershop.data.model.customer_account.AccountModel
 import com.example.sweetflowershop.data.model.review.Review
 import io.reactivex.rxjava3.core.Observable
 
-class ProductAPIService {
+class ProductRepository {
     private val api: ProductsAPI = ApiClient.createService(ProductsAPI::class.java)
 
     fun getProducts(): Single<List<Product>> {

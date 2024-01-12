@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.create
 
-class CityAPIService {
+class CityRepository {
 
     private val cityAPI = RetrofitClient.instance.create<CityAPI>()
 

@@ -10,11 +10,11 @@ import com.example.sweetflowershop.ui.adapter.CartAdapter
 import com.example.sweetflowershop.databinding.FragmentCartsBinding
 import com.example.sweetflowershop.ui.view.address.ChooseAddressActivity
 import com.example.sweetflowershop.ui.viewmodel.CartViewModel
-import com.example.sweetflowershop.data.repository.CartAPIService
+import com.example.sweetflowershop.data.repository.CartRepository
 
 class CartActivity : AppCompatActivity() {
     private lateinit var binding: FragmentCartsBinding
-    private lateinit var cartApiServices: CartAPIService
+    private lateinit var cartApiServices: CartRepository
     private lateinit var cartAdapter: CartAdapter
     private lateinit var cartViewModel: CartViewModel
 
@@ -26,7 +26,7 @@ class CartActivity : AppCompatActivity() {
 
         cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
 
-        cartApiServices = CartAPIService()
+        cartApiServices = CartRepository()
         cartAdapter = CartAdapter(ArrayList(), cartViewModel, this)
 
         binding.rvCartitems.adapter = cartAdapter

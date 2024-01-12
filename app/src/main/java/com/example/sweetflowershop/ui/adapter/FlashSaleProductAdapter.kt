@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sweetflowershop.data.model.product.Product
-import com.example.sweetflowershop.data.repository.ProductAPIService
+import com.example.sweetflowershop.data.repository.ProductRepository
 import com.example.sweetflowershop.databinding.FlashSaleItemBinding
 import com.example.sweetflowershop.network.apiService._Constant
 import com.example.sweetflowershop.ui.view.product.ProductDetail
@@ -16,7 +16,7 @@ import java.io.Serializable
 class FlashSaleProductAdapter(private var flashSaleProducts: List<Product>) :
     RecyclerView.Adapter<FlashSaleProductAdapter.ViewHolder>() {
 
-    private val productAPIService = ProductAPIService()
+    private val productRepository = ProductRepository()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

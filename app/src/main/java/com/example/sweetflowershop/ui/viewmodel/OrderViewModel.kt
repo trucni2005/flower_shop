@@ -13,14 +13,14 @@ import androidx.lifecycle.ViewModel
 import com.example.sweetflowershop.data.model.order.Order
 import com.example.sweetflowershop.data.model.order.OrderToSend
 import com.example.sweetflowershop.data.model.order.Payment
-import com.example.sweetflowershop.data.repository.OrderAPIService
+import com.example.sweetflowershop.data.repository.OrderRepository
 import com.example.sweetflowershop.ui.view.main.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class OrderViewModel : ViewModel() {
-    private val orderApiService = OrderAPIService()
+    private val orderApiService = OrderRepository()
 
     private val _orderListLiveData = MutableLiveData<List<Order>>()
     val orderListLiveData: LiveData<List<Order>> = _orderListLiveData

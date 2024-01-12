@@ -6,13 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sweetflowershop.data.model.order.OrderHistory
-import com.example.sweetflowershop.data.repository.OrderAPIService
+import com.example.sweetflowershop.data.repository.OrderRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class OrderHistoryViewModel : ViewModel() {
-    private val apiServices = OrderAPIService() // Thay thế bằng API service của bạn
+    private val apiServices = OrderRepository() // Thay thế bằng API service của bạn
     private val _orderHistoryLiveData = MutableLiveData<List<OrderHistory>>()
 
     val orderHistoryLiveData: LiveData<List<OrderHistory>> = _orderHistoryLiveData

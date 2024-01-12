@@ -5,12 +5,9 @@ import android.text.SpannableString
 import android.text.style.StrikethroughSpan
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.sweetflowershop.data.model.product.Product
-import com.example.sweetflowershop.data.repository.ProductAPIService
+import com.example.sweetflowershop.data.repository.ProductRepository
 import com.example.sweetflowershop.databinding.RelatedProductItemBinding
 import com.example.sweetflowershop.network.apiService._Constant
 import com.example.sweetflowershop.ui.view.product.ProductDetail
@@ -21,7 +18,7 @@ import java.io.Serializable
 class RelatedProductAdapter(private var relatedProducts: List<Product>) :
     RecyclerView.Adapter<RelatedProductAdapter.ViewHolder>() {
 
-    private val productAPIService = ProductAPIService()
+    private val productRepository = ProductRepository()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -3,6 +3,7 @@ package com.example.sweetflowershop.ui.view.forgotPassword
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sweetflowershop.ui.view.main.MainActivity
 import com.example.sweetflowershop.databinding.ActivityInputNewPassBinding
@@ -43,6 +44,7 @@ class InputNewPasswordActivity : AppCompatActivity() {
                             .subscribe { accountModel ->
                                 if (accountModel.success) {
                                     Log.d("DEBUG", "Reset password success. Please login your account!")
+                                    Toast.makeText(this, "Thay đổi mật khẩu thành công! Vui lòng đăng nhập lại bằng mật khẩu mới", Toast.LENGTH_SHORT).show()
                                     val intent = Intent(this, MainActivity::class.java)
                                     intent.putExtra("shouldLaunchLoginActivity", true)
                                     startActivity(intent)

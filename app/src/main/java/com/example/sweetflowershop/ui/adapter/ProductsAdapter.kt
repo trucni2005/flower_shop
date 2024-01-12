@@ -12,11 +12,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.product.Product
 import com.example.sweetflowershop.ui.view.product.ProductDetail
-import com.example.sweetflowershop.data.repository.ProductAPIService
+import com.example.sweetflowershop.data.repository.ProductRepository
 import com.example.sweetflowershop.network.apiService._Constant
 import com.example.sweetflowershop.ui.view.login.LoginActivity
 import com.squareup.picasso.Picasso
@@ -28,7 +29,7 @@ import java.io.Serializable
 class ProductsAdapter(private var products: List<Product>) :
 
     RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
-    private val productAPIService = ProductAPIService()
+    private val productRepository = ProductRepository()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -69,7 +70,7 @@ class ProductsAdapter(private var products: List<Product>) :
                 Log.d("token", token.toString())
 
                 if (!token.isNullOrEmpty()) {
-                    val addToCartObservable = productAPIService.addToCart(token, productId)
+                    val addToCartObservable = productRepository.addToCart(token, productId)
 
                     addToCartObservable
                         ?.subscribeOn(Schedulers.io())
@@ -78,6 +79,7 @@ class ProductsAdapter(private var products: List<Product>) :
                             { accountModel ->
                                 if (accountModel.success) {
                                     Log.d("Test", "Success")
+                                    Toast.makeText(itemView.context, "Thêm sản phẩm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show()
                                 } else {
                                     Log.e("Test", "Failed: ${accountModel.message}")
                                 }

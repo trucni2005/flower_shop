@@ -1,6 +1,7 @@
 package com.example.sweetflowershop.ui.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.category.Category
+import com.example.sweetflowershop.network.apiService._Constant
 import com.example.sweetflowershop.ui.view.product.ProductsByCategory
 import com.squareup.picasso.Picasso
 
@@ -25,8 +27,8 @@ class CategoryAdapter(private var categories: List<Category>) :
         val category = categories[position]
         holder.tvName.text = category.name
         holder.description.text = category.detail
-        Picasso.get().load(category.image).into(holder.imageUrl)
-
+        val image_url = _Constant.baseUrl_ + "images/product/${category.image}"
+        Picasso.get().load(image_url).into(holder.imageUrl)
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, ProductsByCategory::class.java)
             intent.putExtra("categoryId", category.id)

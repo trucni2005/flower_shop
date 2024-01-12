@@ -19,7 +19,7 @@ import com.example.sweetflowershop.R
 import com.example.sweetflowershop.data.model.cart.CartItem
 import com.example.sweetflowershop.data.model.cart.CartToSend
 import com.example.sweetflowershop.ui.viewmodel.CartViewModel
-import com.example.sweetflowershop.data.repository.CartAPIService
+import com.example.sweetflowershop.data.repository.CartRepository
 import com.example.sweetflowershop.network.apiService._Constant
 import com.squareup.picasso.Picasso
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -32,7 +32,7 @@ class CartAdapter(private var carts: MutableList<CartItem> = mutableListOf(),
                   private val context: Context) :
     RecyclerView.Adapter<CartAdapter.Viewholder>() {
 
-    private val APIService = CartAPIService()
+    private val APIService = CartRepository()
     private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Viewholder {

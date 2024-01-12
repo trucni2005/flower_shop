@@ -164,7 +164,7 @@ class CustomerInformationActivity : AppCompatActivity() {
                         .apply(RequestOptions().dontTransform())
                         .into(binding.ivUserPhoto)
 
-                    Toast.makeText(this, "Image converted to Base64", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Upload avatar successful!", Toast.LENGTH_SHORT).show()
 
                 } catch (e: IOException) {
                     e.printStackTrace()

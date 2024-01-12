@@ -8,12 +8,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sweetflowershop.databinding.FragmentCategoryBinding
 import com.example.sweetflowershop.ui.adapter.CategoryAdapter
-import com.example.sweetflowershop.data.repository.CategoryAPIService
+import com.example.sweetflowershop.data.repository.CategoryRepository
 import com.example.sweetflowershop.ui.viewmodel.CategoryViewModel
 
 class CategoryFragment : Fragment() {
     private lateinit var binding: FragmentCategoryBinding
-    private lateinit var categoryApiServices: CategoryAPIService
+    private lateinit var categoryApiServices: CategoryRepository
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categoryViewModel: CategoryViewModel
 
@@ -31,7 +31,7 @@ class CategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        categoryApiServices = CategoryAPIService()
+        categoryApiServices = CategoryRepository()
         categoryAdapter = CategoryAdapter(ArrayList())
 
         binding.rvCategories.adapter = categoryAdapter

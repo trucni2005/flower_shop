@@ -5,15 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sweetflowershop.data.model.product.Product
-import com.example.sweetflowershop.data.repository.ProductAPIService
+import com.example.sweetflowershop.data.repository.ProductRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 class HomeViewModel : ViewModel() {
-    private val apiServices = ProductAPIService()
+    private val apiServices = ProductRepository()
     private val _productsLiveData = MutableLiveData<List<Product>>()
     private val _flashSaleProductsLiveData = MutableLiveData<List<Product>>()
     private val _bestSellerProductsLiveData = MutableLiveData<List<Product>>()

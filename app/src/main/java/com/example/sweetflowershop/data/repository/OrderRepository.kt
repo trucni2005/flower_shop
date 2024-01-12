@@ -7,7 +7,7 @@ import com.example.sweetflowershop.data.api.OrderAPI
 import com.example.sweetflowershop.data.model.order.OrderHistory
 import io.reactivex.rxjava3.core.Single
 
-class OrderAPIService {
+class OrderRepository {
     private val api: OrderAPI = ApiClient.createService(OrderAPI::class.java)
 
     fun createOrder(token: String, orderToSend: OrderToSend): Single<Order> {

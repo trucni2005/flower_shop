@@ -16,7 +16,7 @@ import com.example.sweetflowershop.data.model.address.District
 import com.example.sweetflowershop.data.model.address.Ward
 import com.example.sweetflowershop.databinding.ActivitySetAddressBinding
 import com.example.sweetflowershop.data.repository.AddressAPIService
-import com.example.sweetflowershop.data.repository.CityAPIService
+import com.example.sweetflowershop.data.repository.CityRepository
 import com.example.sweetflowershop.ui.view.login.LoginActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -25,7 +25,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class AddAddressActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySetAddressBinding
-    private val cityAPIService = CityAPIService()
+    private val cityAPIService = CityRepository()
     private val addressAPIService = AddressAPIService()
     private val cityList: MutableList<City> = mutableListOf()
     private val compositeDisposable = CompositeDisposable()

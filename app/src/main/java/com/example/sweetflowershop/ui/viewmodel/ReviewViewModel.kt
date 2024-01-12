@@ -5,13 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sweetflowershop.data.model.review.Review
-import com.example.sweetflowershop.data.repository.ProductAPIService
+import com.example.sweetflowershop.data.repository.ProductRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ReviewViewModel : ViewModel() {
-    private val apiServices = ProductAPIService() // Thay thế bằng API service của bạn
+    private val apiServices = ProductRepository() // Thay thế bằng API service của bạn
     private val _reviewsLiveData = MutableLiveData<List<Review>>()
 
     val reviewsLiveData: LiveData<List<Review>> = _reviewsLiveData

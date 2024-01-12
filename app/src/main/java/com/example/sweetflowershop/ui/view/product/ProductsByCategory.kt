@@ -7,16 +7,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.sweetflowershop.databinding.ActivityProductByCategoryBinding
 import com.example.sweetflowershop.data.model.product.Product
 import com.example.sweetflowershop.ui.adapter.ProductsAdapter
-import com.example.sweetflowershop.data.repository.CategoryAPIService
-import com.example.sweetflowershop.data.repository.ProductAPIService
+import com.example.sweetflowershop.data.repository.CategoryRepository
+import com.example.sweetflowershop.data.repository.ProductRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ProductsByCategory : AppCompatActivity() {
     private lateinit var binding: ActivityProductByCategoryBinding
-    private lateinit var categoryApiServices: CategoryAPIService
-    private lateinit var productApiServices: ProductAPIService
+    private lateinit var categoryApiServices: CategoryRepository
+    private lateinit var productApiServices: ProductRepository
     private val products = ArrayList<Product>()
     private lateinit var productAdapter: ProductsAdapter
 
@@ -33,8 +33,8 @@ class ProductsByCategory : AppCompatActivity() {
         binding.rvProducts.adapter = productAdapter
         binding.rvProducts.layoutManager = GridLayoutManager(this, 2)
 
-        categoryApiServices = CategoryAPIService()
-        productApiServices = ProductAPIService()
+        categoryApiServices = CategoryRepository()
+        productApiServices = ProductRepository()
 
         productApiServices.getProductsbyCategory(categoryId)
             .subscribeOn(Schedulers.newThread())

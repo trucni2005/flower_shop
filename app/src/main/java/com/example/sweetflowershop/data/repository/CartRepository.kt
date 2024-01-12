@@ -7,7 +7,7 @@ import com.example.sweetflowershop.data.api.CartAPI
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
-class CartAPIService {
+class CartRepository {
     private val api: CartAPI = ApiClient.createService(CartAPI::class.java)
 
     fun getCartItems(token: String): Single<List<CartItem>> {

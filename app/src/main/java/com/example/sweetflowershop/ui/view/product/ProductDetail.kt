@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,13 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sweetflowershop.R
 import com.example.sweetflowershop.databinding.ActivityProductDetailBinding
 import com.example.sweetflowershop.data.model.product.Product
-import com.example.sweetflowershop.data.repository.ProductAPIService
+import com.example.sweetflowershop.data.repository.ProductRepository
 import com.example.sweetflowershop.network.apiService._Constant
-import com.example.sweetflowershop.ui.adapter.ProductsAdapter
 import com.example.sweetflowershop.ui.adapter.RelatedProductAdapter
 import com.example.sweetflowershop.ui.adapter.ReviewAdapter
 import com.example.sweetflowershop.ui.view.login.LoginActivity
-import com.example.sweetflowershop.ui.viewmodel.HomeViewModel
 import com.example.sweetflowershop.ui.viewmodel.ProductDetailViewModel
 import com.example.sweetflowershop.ui.viewmodel.ReviewViewModel
 import com.squareup.picasso.Picasso
@@ -35,7 +34,7 @@ class ProductDetail : AppCompatActivity() {
     private lateinit var reviewViewModel: ReviewViewModel
     private lateinit var reviewAdapter: ReviewAdapter
     private lateinit var viewModel: ProductDetailViewModel
-    private val productAPIService = ProductAPIService()
+    private val productRepository = ProductRepository()
     private lateinit var relatedProductAdapter: RelatedProductAdapter
     private val compositeDisposable = CompositeDisposable()
 
@@ -91,7 +90,7 @@ class ProductDetail : AppCompatActivity() {
             Log.d("token", token.toString())
 
             if (!token.isNullOrEmpty()) {
-                val addToCartObservable = productAPIService.addToCart(token, productId)
+                val addToCartObservable = productRepository.addToCart(token, productId)
 
                 addToCartObservable
                     ?.subscribeOn(Schedulers.io())
@@ -100,6 +99,7 @@ class ProductDetail : AppCompatActivity() {
                         { accountModel ->
                             if (accountModel.success) {
                                 Log.d("Test", "Success")
+                                Toast.makeText(this, "Thêm sản phẩm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show()
                             } else {
                                 Log.e("Test", "Failed: ${accountModel.message}")
                             }
