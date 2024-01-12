@@ -115,6 +115,9 @@
     </li>
   </ul>
 
+  <h2>Demo 🎥</h2>
+  <p>Explore our app by checking out the <a href="https://youtu.be/NITa2rRSNng">demo</a>.</p>
+
   <h2>Contribution and Feedback 🤝</h2>
   <p>We welcome contributions from the community. Please feel free to open issues or create pull requests if you have any suggestions.</p>
 </body>
