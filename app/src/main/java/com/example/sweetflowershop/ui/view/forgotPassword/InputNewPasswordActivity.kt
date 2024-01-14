@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class InputNewPasswordActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityInputNewPassBinding
     private val accountAPIService = AccountRepository()
     private val compositeDisposable = CompositeDisposable()
@@ -21,14 +22,13 @@ class InputNewPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         binding = ActivityInputNewPassBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         binding.btnSubmit.setOnClickListener {
             val username = intent.getStringExtra("username")
             val password = binding.etReenterPassword.text.toString()
 
-            if (username != null) {
+            username?.let {
                 resetPassword(username, password)
             }
         }
@@ -36,20 +36,34 @@ class InputNewPasswordActivity : AppCompatActivity() {
 
     private fun resetPassword(username: String, password: String) {
         Log.d("DEBUG", username)
-            accountAPIService.resetPassword(username,password)
-                ?.subscribeOn(Schedulers.io())
-                ?.observeOn(AndroidSchedulers.mainThread())?.let {
-                    compositeDisposable.add(
-                        it
-                            .subscribe { accountModel ->
-                                if (accountModel.success) {
-                                    Log.d("DEBUG", "Reset password success. Please login your account!")
-                                    Toast.makeText(this, "Thay đổi mật khẩu thành công! Vui lòng đăng nhập lại bằng mật khẩu mới", Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(this, MainActivity::class.java)
-                                    intent.putExtra("shouldLaunchLoginActivity", true)
-                                    startActivity(intent)
-                                }
-                            });
-                }
+
+        accountAPIService.resetPassword(username, password)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.let { disposable ->
+                compositeDisposable.add(
+                    disposable.subscribe { accountModel ->
+                        if (accountModel.success) {
+                            Log.d("DEBUG", "Reset password success. Please login your account!")
+                            showToast("Thay đổi mật khẩu thành công! Vui lòng đăng nhập lại bằng mật khẩu mới")
+                            navigateToLoginActivity()
+                        }
+                    }
+                )
+            }
+    }
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun navigateToLoginActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("shouldLaunchLoginActivity", true)
+        startActivity(intent)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

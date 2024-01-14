@@ -1,5 +1,6 @@
 package com.example.sweetflowershop.ui.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -7,7 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sweetflowershop.data.model.address.Address
-import com.example.sweetflowershop.data.repository.AddressAPIService
+import com.example.sweetflowershop.data.repository.AddressRepository
 import com.example.sweetflowershop.ui.view.main.MainActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
@@ -15,13 +16,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class AddressViewModel : ViewModel() {
 
-    private val addressApiServices = AddressAPIService()
+    private val addressApiServices = AddressRepository()
 
     private val _addressListLiveData = MutableLiveData<List<Address>>()
 
     val addressListLiveData: LiveData<List<Address>>
         get() = _addressListLiveData
 
+    @SuppressLint("CheckResult")
     fun fetchAddressList(context: Context) {
         val sharedPreferences = context.getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
         val token = sharedPreferences.getString("Authorization", null)

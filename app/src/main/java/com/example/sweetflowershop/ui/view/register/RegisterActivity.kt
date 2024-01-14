@@ -22,62 +22,81 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(binding.root)
 
-        val usernameEditText = binding.etUsername
-        val emailEditText = binding.etEmail
-        val passwordEditText = binding.etPassword
-        val reenterPasswordEditText = binding.etRepass
-        val phoneNumberEditText = binding.etPhone
-        val submitButton = binding.btnSignUp
+        setupUI()
+    }
 
+    private fun setupUI() {
+        val submitButton = binding.btnSignUp
         submitButton.setOnClickListener {
-            val username = usernameEditText.text.toString()
-            val email = emailEditText.text.toString()
-            val password = passwordEditText.text.toString()
-            val reenterPassword = reenterPasswordEditText.text.toString()
-            val phoneNumber = phoneNumberEditText.text.toString()
+            val username = binding.etUsername.text.toString()
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+            val reenterPassword = binding.etRepass.text.toString()
+            val phoneNumber = binding.etPhone.text.toString()
 
             if (password != reenterPassword) {
-                Toast.makeText(this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show()
+                showToast("Mật khẩu không khớp")
             } else {
-                val emailPattern = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
-                if (!Pattern.matches(emailPattern, email)) {
-                    Toast.makeText(this, "Email không hợp lệ", Toast.LENGTH_SHORT).show()
+                if (!isEmailValid(email)) {
+                    showToast("Email không hợp lệ")
                 } else if (phoneNumber.length < 10) {
-                    Toast.makeText(this, "Số điện thoại phải có ít nhất 10 số", Toast.LENGTH_SHORT).show()
+                    showToast("Số điện thoại phải có ít nhất 10 số")
                 } else {
-                    Log.d("DEBUG", "Gọi verify")
-                    accountAPIService.verify_email(username, password, email, phoneNumber)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                            { accountModel ->
-                                if (accountModel.success) {
-                                    val successMessage = accountModel.message
-                                    Log.d("DEBUG", "Đăng ký thành công. Message: $successMessage")
-                                    val bundle = Bundle()
-                                    bundle.putString("request", "0")
-                                    bundle.putString("id", successMessage)
-                                    bundle.putString("username", username)
-                                    bundle.putString("password", password)
-                                    bundle.putString("email", email)
-                                    bundle.putString("phoneNumber", phoneNumber)
-                                    val intent = Intent(this, VerifyByEmail::class.java)
-                                    intent.putExtras(bundle)
-                                    startActivity(intent)
-                                } else {
-                                    val errorMessage = accountModel.message
-                                    Log.e("DEBUG", "Đăng ký không thành công. Message: $errorMessage")
-                                }
-                            },
-                            { throwable ->
-                                // Xử lý khi có lỗi xảy ra
-                                Log.e("DEBUG", "Lỗi xảy ra: ${throwable.message}")
-                                throwable.printStackTrace() // In lỗi ra màn hình
-                            }
-                        )
-
+                    registerUser(username, password, email, phoneNumber)
                 }
             }
         }
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+        val emailPattern = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
+        return Pattern.matches(emailPattern, email)
+    }
+
+    private fun registerUser(username: String, password: String, email: String, phoneNumber: String) {
+        accountAPIService.verify_email(username, password, email, phoneNumber)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { accountModel ->
+                    if (accountModel.success) {
+                        handleSuccess(username, password, email, phoneNumber, accountModel.message)
+                    } else {
+                        handleFailure(accountModel.message)
+                    }
+                },
+                { throwable ->
+                    handleFailure(throwable.message)
+                    throwable.printStackTrace()
+                }
+            )
+    }
+
+    private fun handleSuccess(
+        username: String,
+        password: String,
+        email: String,
+        phoneNumber: String,
+        successMessage: String
+    ) {
+        showToast("Đăng ký thành công. Message: $successMessage")
+        val bundle = Bundle().apply {
+            putString("request", "0")
+            putString("id", successMessage)
+            putString("username", username)
+            putString("password", password)
+            putString("email", email)
+            putString("phoneNumber", phoneNumber)
+        }
+        val intent = Intent(this, VerifyByEmail::class.java).apply { putExtras(bundle) }
+        startActivity(intent)
+    }
+
+    private fun handleFailure(errorMessage: String?) {
+        Log.e("DEBUG", "Đăng ký không thành công. Message: $errorMessage")
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

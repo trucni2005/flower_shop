@@ -11,7 +11,8 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class ForgotPasswordActivity: AppCompatActivity() {
+class ForgotPasswordActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityForgotPassBinding
     private val accountAPIService = AccountRepository()
     private val compositeDisposable = CompositeDisposable()
@@ -20,8 +21,7 @@ class ForgotPasswordActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         binding = ActivityForgotPassBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         binding.btnForgotNext.setOnClickListener {
             val username = binding.etForgotUsername.text.toString()
@@ -31,24 +31,34 @@ class ForgotPasswordActivity: AppCompatActivity() {
 
     private fun sendEmail(username: String) {
         Log.d("username", username)
-            accountAPIService.forgotPassword(username)
-                ?.subscribeOn(Schedulers.io())
-                ?.observeOn(AndroidSchedulers.mainThread())?.let {
-                    compositeDisposable.add(
-                        it
-                            .subscribe { accountModel ->
-                                if (accountModel.success) {
-                                    val successMessage = accountModel.message
-                                    Log.d("DEBUG", "Tạo quên mật khẩu thành công. Message: $successMessage")
-                                    val bundle = Bundle()
-                                    bundle.putString("request", "1")
-                                    bundle.putString("id", successMessage)
-                                    bundle.putString("username", username)
-                                    val intent = Intent(this, VerifyByEmail::class.java)
-                                    intent.putExtras(bundle)
-                                    startActivity(intent)
-                                }
-                            });
-                }
+
+        accountAPIService.forgotPassword(username)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.let { disposable ->
+                compositeDisposable.add(
+                    disposable.subscribe { accountModel ->
+                        if (accountModel.success) {
+                            handleForgotPasswordSuccess(username, accountModel.message)
+                        }
+                    }
+                )
+            }
+    }
+
+    private fun handleForgotPasswordSuccess(username: String, successMessage: String) {
+        Log.d("DEBUG", "Tạo quên mật khẩu thành công. Message: $successMessage")
+        val bundle = Bundle().apply {
+            putString("request", "1")
+            putString("id", successMessage)
+            putString("username", username)
+        }
+        val intent = Intent(this, VerifyByEmail::class.java).putExtras(bundle)
+        startActivity(intent)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

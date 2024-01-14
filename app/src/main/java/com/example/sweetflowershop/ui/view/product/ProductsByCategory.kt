@@ -10,6 +10,7 @@ import com.example.sweetflowershop.ui.adapter.ProductsAdapter
 import com.example.sweetflowershop.data.repository.CategoryRepository
 import com.example.sweetflowershop.data.repository.ProductRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -19,24 +20,31 @@ class ProductsByCategory : AppCompatActivity() {
     private lateinit var productApiServices: ProductRepository
     private val products = ArrayList<Product>()
     private lateinit var productAdapter: ProductsAdapter
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         binding = ActivityProductByCategoryBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
 
-        val categoryId = intent.getIntExtra("categoryId", 0) // Lấy ID danh mục từ Intent
+        setupRecyclerView()
 
+        val categoryId = intent.getIntExtra("categoryId", 0)
+        fetchProductsByCategory(categoryId)
+    }
+
+    private fun setupRecyclerView() {
         productAdapter = ProductsAdapter(products)
         binding.rvProducts.adapter = productAdapter
         binding.rvProducts.layoutManager = GridLayoutManager(this, 2)
+    }
 
+    private fun fetchProductsByCategory(categoryId: Int) {
         categoryApiServices = CategoryRepository()
         productApiServices = ProductRepository()
 
-        productApiServices.getProductsbyCategory(categoryId)
+        val disposable = productApiServices.getProductsbyCategory(categoryId)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSingleObserver<List<Product>>() {
@@ -49,5 +57,12 @@ class ProductsByCategory : AppCompatActivity() {
                     e.message?.let { Log.d("DEBUG", "Fail $it") }
                 }
             })
+
+        compositeDisposable.add(disposable)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

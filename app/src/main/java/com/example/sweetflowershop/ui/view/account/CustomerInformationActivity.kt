@@ -38,6 +38,7 @@ import java.util.Calendar
 import java.util.Locale
 
 class CustomerInformationActivity : AppCompatActivity() {
+
     private val accountAPIService = AccountRepository()
     private lateinit var binding: ActivityCustomerInformationBinding
     private val compositeDisposable = CompositeDisposable()
@@ -53,129 +54,111 @@ class CustomerInformationActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_customer_information)
         accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
 
+        setupUI()
+    }
+
+    private fun setupUI() {
         val account: Account? = intent.getSerializableExtra("account") as? Account
         Log.d("account", account.toString())
         account?.let {
             binding.account = it
+            loadImage(it.avatar)
+        }
 
-            val fullUrl = _Constant.baseUrl_ + "images/customer/" + it.avatar
-            Log.d("fullUrl", fullUrl)
-            Picasso.get()
-                .load(fullUrl)
+        binding.etBirthday.setOnClickListener { showDatePickerDialog() }
+
+        binding.rbMale.setOnClickListener { setGender(true) }
+        binding.rbFemale.setOnClickListener { setGender(false) }
+
+        binding.btnSave.setOnClickListener { saveAccountInformation() }
+        binding.avatarInformation.setOnClickListener { requestCameraAndGalleryPermissions() }
+    }
+
+    private fun loadImage(avatar: String) {
+        val fullUrl = _Constant.baseUrl_ + "images/customer/$avatar"
+        Log.d("fullUrl", fullUrl)
+        Picasso.get().load(fullUrl).into(binding.ivUserPhoto)
+    }
+
+    private fun setGender(isMale: Boolean) {
+        binding.rbMale.isChecked = isMale
+        binding.rbFemale.isChecked = !isMale
+    }
+
+    private fun requestCameraAndGalleryPermissions() {
+        val cameraPermission = ContextCompat.checkSelfPermission(
+            this, Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+
+        val galleryPermission = ContextCompat.checkSelfPermission(
+            this, Manifest.permission.WRITE_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+
+        val permissionsToRequest = ArrayList<String>()
+
+        if (!cameraPermission) {
+            permissionsToRequest.add(Manifest.permission.CAMERA)
+        }
+
+        if (!galleryPermission) {
+            permissionsToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+
+        if (permissionsToRequest.isNotEmpty()) {
+            ActivityCompat.requestPermissions(
+                this,
+                permissionsToRequest.toTypedArray(),
+                CAMERA_AND_GALLERY_PERMISSION_REQUEST
+            )
+        } else {
+            openGallery()
+            Log.d("Permission", "Both permissions already granted")
+        }
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    private fun encodeImageToBase64(bitmap: Bitmap): ByteArray? {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream)
+        return byteArrayOutputStream.toByteArray()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            handleImageSelection(data)
+        }
+    }
+
+    private fun handleImageSelection(data: Intent?) {
+        val selectedImageUri: Uri? = data?.data
+
+        try {
+            val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImageUri)
+            base64Image = encodeImageToBase64(bitmap)
+
+            Log.d("base64Image", base64Image.toString())
+
+            Glide.with(this)
+                .asBitmap()
+                .load(bitmap)
+                .apply(RequestOptions().dontTransform())
                 .into(binding.ivUserPhoto)
-        }
 
-        binding.etBirthday.setOnClickListener {
-            showDatePickerDialog()
-        }
+            Toast.makeText(this, "Cập nhật avatar thành công!", Toast.LENGTH_SHORT).show()
 
-        binding.rbMale.setOnClickListener {
-            if (!binding.rbMale.isChecked) {
-                binding.rbMale.isChecked = true
-                binding.rbFemale.isChecked = false
-            }
-        }
-
-        binding.rbFemale.setOnClickListener {
-            if (!binding.rbFemale.isChecked) {
-                binding.rbFemale.isChecked = true
-                binding.rbMale.isChecked = false
-            }
-        }
-
-        binding.btnSave.setOnClickListener {
-            val phone = binding.etPhone.text.toString()
-            val fullName = binding.etFullname.text.toString()
-            val email = binding.etEmail.text.toString()
-            val sex = binding.rbMale.isChecked
-            val birth = binding.etBirthday.text.toString()
-            if (base64Image != null) {
-                updateAccountInformation(base64Image!!, phone, fullName, email, sex, birth)
-            } else {
-                updateAccountInformation(null, phone, fullName, email, sex, birth)
-            }
-        }
-
-        binding.avatarInformation.setOnClickListener {
-            requestCameraAndGalleryPermissions()
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Toast.makeText(this, "Đã xảy ra lỗi khi xử lý hình ảnh!", Toast.LENGTH_SHORT).show()
         }
     }
 
-        private fun requestCameraAndGalleryPermissions() {
-            val cameraPermission = ContextCompat.checkSelfPermission(
-                this, Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED
-
-            val galleryPermission = ContextCompat.checkSelfPermission(
-                this, Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED
-
-            val permissionsToRequest = ArrayList<String>()
-
-            if (!cameraPermission) {
-                permissionsToRequest.add(Manifest.permission.CAMERA)
-            }
-
-            if (!galleryPermission) {
-                permissionsToRequest.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            }
-
-            if (permissionsToRequest.isNotEmpty()) {
-                ActivityCompat.requestPermissions(
-                    this,
-                    permissionsToRequest.toTypedArray(),
-                    CAMERA_AND_GALLERY_PERMISSION_REQUEST
-                )
-            } else {
-                openGallery()
-                Log.d("Permission", "Both permissions already granted")
-            }
-        }
-
-        private fun openGallery() {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "image/*"
-            startActivityForResult(intent, PICK_IMAGE_REQUEST)
-        }
-
-        private fun encodeImageToBase64(bitmap: Bitmap): ByteArray? {
-            val byteArrayOutputStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream)
-            return byteArrayOutputStream.toByteArray()
-        }
-
-
-        override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-            super.onActivityResult(requestCode, resultCode, data)
-
-            if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
-                val selectedImageUri: Uri? = data?.data
-
-                try {
-                    val bitmap =
-                        MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImageUri)
-                    base64Image = encodeImageToBase64(bitmap)
-
-                    Log.d("base64Image", base64Image.toString())
-
-                    Glide.with(this)
-                        .asBitmap()
-                        .load(bitmap)
-                        .apply(RequestOptions().dontTransform())
-                        .into(binding.ivUserPhoto)
-
-                    Toast.makeText(this, "Upload avatar successful!", Toast.LENGTH_SHORT).show()
-
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                    Toast.makeText(this, "Error processing image", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-    private fun fetchAccount() {
-        accountViewModel.fetchAccount(this)
-    }
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
         val currentYear = calendar.get(Calendar.YEAR)
@@ -200,59 +183,72 @@ class CustomerInformationActivity : AppCompatActivity() {
         datePickerDialog.show()
     }
 
-    private fun updateAccountInformation(
-            avatar: ByteArray?,
-            phone: String,
-            fullName: String,
-            email: String,
-            sex: Boolean,
-            birthday: String
-        ) {
-            val sharedPreferences =
-                this.getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
-            val token = sharedPreferences.getString("Authorization", null)
+    private fun saveAccountInformation() {
+        val phone = binding.etPhone.text.toString()
+        val fullName = binding.etFullname.text.toString()
+        val email = binding.etEmail.text.toString()
+        val sex = binding.rbMale.isChecked
+        val birth = binding.etBirthday.text.toString()
 
-            Log.d("avatar", avatar.toString())
-            val accountInformation =
-                AccountInformation(avatar, phone, fullName, email, sex, birthday)
-            Log.d("accountInformation", accountInformation.toString())
-
-            if (token != null) {
-                accountAPIService.updateAccountInformation(token, accountInformation)
-                    ?.subscribeOn(Schedulers.io())
-                    ?.observeOn(AndroidSchedulers.mainThread())
-                    ?.let {
-                        compositeDisposable.add(
-                            it.subscribe(
-                                { accountModel ->
-                                    if (accountModel.success) {
-                                        val successMessage = accountModel.message
-                                        Log.d("DEBUG", "Success. Message: $successMessage")
-                                        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
-                                        navigateToMainActivity()
-
-                                    } else {
-                                        Log.e("ERROR", "Error: ${accountModel.message}")
-                                    }
-                                },
-                                { error ->
-                                    Log.e("ERROR", "Error: ${error.message}")
-                                }
-                            )
-                        )
-                    }
-            }
-        }
-
-        private fun navigateToMainActivity() {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("shouldLaunchLoginActivity", false)
-            startActivity(intent)
-        }
-
-        override fun onDestroy() {
-            super.onDestroy()
-            compositeDisposable.clear()
+        if (base64Image != null) {
+            updateAccountInformation(base64Image!!, phone, fullName, email, sex, birth)
+        } else {
+            updateAccountInformation(null, phone, fullName, email, sex, birth)
         }
     }
 
+    private fun updateAccountInformation(
+        avatar: ByteArray?,
+        phone: String,
+        fullName: String,
+        email: String,
+        sex: Boolean,
+        birthday: String
+    ) {
+        val sharedPreferences =
+            this.getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
+        val token = sharedPreferences.getString("Authorization", null)
+
+        Log.d("avatar", avatar.toString())
+        val accountInformation =
+            AccountInformation(avatar, phone, fullName, email, sex, birthday)
+        Log.d("accountInformation", accountInformation.toString())
+
+        if (token != null) {
+            accountAPIService.updateAccountInformation(token, accountInformation)
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.let {
+                    compositeDisposable.add(
+                        it.subscribe(
+                            { accountModel ->
+                                if (accountModel.success) {
+                                    val successMessage = accountModel.message
+                                    Log.d("DEBUG", "Success. Message: $successMessage")
+                                    Toast.makeText(this, "Cập nhật thành công", Toast.LENGTH_SHORT).show()
+                                    navigateToMainActivity()
+
+                                } else {
+                                    Log.e("ERROR", "Error: ${accountModel.message}")
+                                }
+                            },
+                            { error ->
+                                Log.e("ERROR", "Error: ${error.message}")
+                            }
+                        )
+                    )
+                }
+        }
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("shouldLaunchLoginActivity", false)
+        startActivity(intent)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
+    }
+}

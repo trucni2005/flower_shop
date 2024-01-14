@@ -15,7 +15,7 @@ import com.example.sweetflowershop.data.model.address.City
 import com.example.sweetflowershop.data.model.address.District
 import com.example.sweetflowershop.data.model.address.Ward
 import com.example.sweetflowershop.databinding.ActivitySetAddressBinding
-import com.example.sweetflowershop.data.repository.AddressAPIService
+import com.example.sweetflowershop.data.repository.AddressRepository
 import com.example.sweetflowershop.data.repository.CityRepository
 import com.example.sweetflowershop.ui.view.login.LoginActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -24,9 +24,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class AddAddressActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivitySetAddressBinding
     private val cityAPIService = CityRepository()
-    private val addressAPIService = AddressAPIService()
+    private val addressAPIService = AddressRepository()
     private val cityList: MutableList<City> = mutableListOf()
     private val compositeDisposable = CompositeDisposable()
     private var selectedCity: City? = null
@@ -37,6 +38,10 @@ class AddAddressActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(binding.root)
 
+        setupUI()
+    }
+
+    private fun setupUI() {
         val nameEditText = binding.tvName
         val phoneEditText = binding.tvPhone
         val districtSpinner = binding.districtSpinnerCardAddBottomSheet
@@ -47,7 +52,7 @@ class AddAddressActivity : AppCompatActivity() {
         val citySpinner = binding.citySpinnerCardAddBottomSheet
         loadCities(citySpinner)
 
-        citySpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        citySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
                 selectedItemView: View?,
@@ -61,9 +66,9 @@ class AddAddressActivity : AppCompatActivity() {
             override fun onNothingSelected(parentView: AdapterView<*>?) {
                 // Do nothing here
             }
-        })
+        }
 
-        districtSpinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+        districtSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parentView: AdapterView<*>?,
                 selectedItemView: View?,
@@ -75,9 +80,8 @@ class AddAddressActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // Do nothing here
             }
-        })
+        }
 
         addButton.setOnClickListener {
             val name = nameEditText.text.toString()
@@ -87,7 +91,7 @@ class AddAddressActivity : AppCompatActivity() {
             val ward = wardSpinner.selectedItem.toString()
             val street = addressEditText.text.toString()
 
-            val addresstoSend= AddressToSend(name, phone, city, district, ward, street)
+            val addressToSend = AddressToSend(name, phone, city, district, ward, street)
 
             Log.d(
                 "AddressInfo",
@@ -100,7 +104,7 @@ class AddAddressActivity : AppCompatActivity() {
             Log.d("token", token.toString())
 
             if (!token.isNullOrEmpty()) {
-                val addToCartObservable = addressAPIService.addAddress(token, addresstoSend)
+                val addToCartObservable = addressAPIService.addAddress(token, addressToSend)
 
                 addToCartObservable
                     ?.subscribeOn(Schedulers.io())
@@ -108,11 +112,15 @@ class AddAddressActivity : AppCompatActivity() {
                     ?.subscribe(
                         { accountModel ->
                             if (accountModel.success) {
-                                Toast.makeText(this, "Add new address success", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Thêm địa chỉ mới thành công!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 val intent = Intent(this, ChooseAddressActivity::class.java)
                                 this.startActivity(intent)
                             } else {
-                                Log.e("Test", "Failed: ${accountModel.message}")
+                                Log.e("Test", "Đã có lỗi xảy ra: ${accountModel.message}")
                             }
                         },
                         { error ->
@@ -149,7 +157,8 @@ class AddAddressActivity : AppCompatActivity() {
 
     private fun updateDistrictSpinner(districtSpinner: Spinner, districts: List<District>) {
         val districtNames = districts.map { it.name }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, districtNames)
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, districtNames)
         districtSpinner.adapter = adapter
     }
 
@@ -157,5 +166,10 @@ class AddAddressActivity : AppCompatActivity() {
         val wardNames = wards.map { it.name }
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, wardNames)
         wardSpinner.adapter = adapter
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

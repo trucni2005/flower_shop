@@ -7,7 +7,7 @@ import com.example.sweetflowershop.data.api.AddressAPI
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 
-class AddressAPIService {
+class AddressRepository {
 
     private val api: AddressAPI = ApiClient.createService(AddressAPI::class.java)
 

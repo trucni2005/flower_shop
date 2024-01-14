@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sweetflowershop.databinding.FragmentNotificationBinding
 import com.example.sweetflowershop.ui.adapter.NotificationAdapter
 import com.example.sweetflowershop.ui.viewmodel.NotificationViewModel
-import androidx.lifecycle.Observer  // Import Observer
 
 class NotificationFragment : Fragment() {
 
@@ -26,7 +26,7 @@ class NotificationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentNotificationBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,15 +35,15 @@ class NotificationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(NotificationViewModel::class.java)
-        adapter = NotificationAdapter(viewModel) // Pass the viewModel to the adapter
+        adapter = NotificationAdapter(viewModel)
 
         binding.rvMyOrderItemsList.adapter = adapter
         binding.rvMyOrderItemsList.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.notificationList.observe(viewLifecycleOwner, Observer { notifications ->
+        viewModel.notificationList.observe(viewLifecycleOwner) { notifications ->
             adapter.submitList(notifications)
-        })
+        }
 
-        context?.let { viewModel.fetchNotificationList(it) }  // Assuming this is a function in your ViewModel to fetch notifications
+        viewModel.fetchNotificationList(requireContext())
     }
 }

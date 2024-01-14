@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +19,6 @@ import com.example.sweetflowershop.ui.adapter.ProductsAdapter
 import com.example.sweetflowershop.ui.view.ChatActivity
 import com.example.sweetflowershop.ui.view.cart.CartActivity
 import com.example.sweetflowershop.ui.viewmodel.HomeViewModel
-import com.squareup.picasso.Picasso
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -39,20 +37,8 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding.btnCart.setOnClickListener {
-            val intent = Intent(requireContext(), CartActivity::class.java)
-            startActivity(intent)
-        }
 
-        binding.btnMessage.setOnClickListener {
-            val intent = Intent(requireContext(), ChatActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.searchView.setOnClickListener{
-            val intent = Intent(requireContext(), SearchActivity::class.java)
-            startActivity(intent)
-        }
+        setClickListeners()
 
         return binding.root
     }
@@ -60,44 +46,90 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initializeViewModel()
+        initializeAdapters()
+        setupRecyclerViews()
+        observeLiveData()
+        fetchData()
+        setupSlider()
+    }
+
+    private fun setClickListeners() {
+        binding.btnCart.setOnClickListener {
+            navigateToCart()
+        }
+
+        binding.btnMessage.setOnClickListener {
+            navigateToChat()
+        }
+
+        binding.searchView.setOnClickListener {
+            navigateToSearch()
+        }
+    }
+
+    private fun navigateToCart() {
+        val intent = Intent(requireContext(), CartActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToChat() {
+        val intent = Intent(requireContext(), ChatActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToSearch() {
+        val intent = Intent(requireContext(), SearchActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun initializeViewModel() {
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+    }
+
+    private fun initializeAdapters() {
         productsAdapter = ProductsAdapter(emptyList())
         flashSaleProductsAdapter = FlashSaleProductAdapter(emptyList())
         bestSellerProductsAdapter = FlashSaleProductAdapter(emptyList())
+    }
 
+    private fun setupRecyclerViews() {
         binding.rvProducts.adapter = productsAdapter
         binding.rvProducts.layoutManager = GridLayoutManager(requireContext(), 2)
 
         binding.rvFlashsale.adapter = flashSaleProductsAdapter
-        binding.rvFlashsale.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvFlashsale.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         binding.rvBestseller.adapter = bestSellerProductsAdapter
-        binding.rvBestseller.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvBestseller.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+    }
 
-        viewModel.productsLiveData.observe(viewLifecycleOwner, Observer { products ->
+    private fun observeLiveData() {
+        viewModel.productsLiveData.observe(viewLifecycleOwner) { products ->
             productsAdapter.setData(products)
-        })
+        }
 
-        viewModel.flashSaleProductsLiveData.observe(viewLifecycleOwner, Observer { flashSaleProducts ->
+        viewModel.flashSaleProductsLiveData.observe(viewLifecycleOwner) { flashSaleProducts ->
             flashSaleProductsAdapter.setData(flashSaleProducts)
-        })
+        }
 
-        viewModel.bestSellerProductsLiveData.observe(viewLifecycleOwner, Observer { bestSellerProducts ->
+        viewModel.bestSellerProductsLiveData.observe(viewLifecycleOwner) { bestSellerProducts ->
             bestSellerProductsAdapter.setData(bestSellerProducts)
-        })
+        }
+    }
 
+    private fun fetchData() {
         viewModel.fetchProducts()
         viewModel.fetchFlashSaleProducts()
         viewModel.fetchBestSellerProducts()
-
-        setupSlider()
     }
 
     private fun setupSlider() {
         val viewFlipper = binding.vfSlider
         viewFlipper.startFlipping()
 
-        // Replace these resource IDs with your actual drawable resource IDs
         val imageResourceIds = arrayOf(
             R.drawable.image1,
             R.drawable.image2,
@@ -120,5 +152,4 @@ class HomeFragment : Fragment() {
         viewFlipper.inAnimation = slideIn
         viewFlipper.outAnimation = slideOut
     }
-
 }

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
@@ -14,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sweetflowershop.R
+import com.example.sweetflowershop.data.model.customer_account.AccountModel
 import com.example.sweetflowershop.databinding.ActivityProductDetailBinding
 import com.example.sweetflowershop.data.model.product.Product
 import com.example.sweetflowershop.data.repository.ProductRepository
@@ -42,94 +42,106 @@ class ProductDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         supportActionBar?.hide()
-        val viewRoot: View = binding.root
-        setContentView(viewRoot)
+        setContentView(binding.root)
 
-        // Get product data from intent
         val bundle = intent.extras
         if (bundle != null) {
             product = bundle.getSerializable("product") as Product
         }
 
-        // Initialize ViewModel
         reviewViewModel = ViewModelProvider(this).get(ReviewViewModel::class.java)
-
-        // Set product details to UI elements
-        binding.tvProductDetailName.text = product.name.toString()
-        binding.tvProductDetailPrice.text = "${product.price}đ"
-        binding.details.text = product.details
-        binding.delivery.text = product.delivery
-        binding.description.text = product.description
-
-        // Set default rating if overall_rating is null
-        binding.rating.rating = product.overall_rating?.toFloat() ?: 5.0f
-
-        // Initialize ReviewAdapter and set it to the RecyclerView
         reviewAdapter = ReviewAdapter(reviewViewModel)
-        binding.rvRating.adapter = reviewAdapter
-        binding.rvRating.layoutManager = LinearLayoutManager(this)
-
         relatedProductAdapter = RelatedProductAdapter(emptyList())
 
-        binding.RecommendRcv.adapter = relatedProductAdapter
-        binding.RecommendRcv.layoutManager = GridLayoutManager(this, 2)
+        setupUI()
+        setupReviewAdapter()
+        setupRelatedProductAdapter()
 
         viewModel = ViewModelProvider(this).get(ProductDetailViewModel::class.java)
 
-        viewModel.relatedProductsLiveData.observe(this, Observer { products ->
+        viewModel.relatedProductsLiveData.observe(this, { products ->
             relatedProductAdapter.setData(products)
         })
 
         viewModel.fetchRelatedProducts(product.id)
 
         binding.addToCartProductDetailsPage.setOnClickListener {
-            val productId = product.id
-            val sharedPreferences =
-                this.getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
-            val token = sharedPreferences.getString("Authorization", null)
-            Log.d("token", token.toString())
-
-            if (!token.isNullOrEmpty()) {
-                val addToCartObservable = productRepository.addToCart(token, productId)
-
-                addToCartObservable
-                    ?.subscribeOn(Schedulers.io())
-                    ?.observeOn(AndroidSchedulers.mainThread())
-                    ?.subscribe(
-                        { accountModel ->
-                            if (accountModel.success) {
-                                Log.d("Test", "Success")
-                                Toast.makeText(this, "Thêm sản phẩm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Log.e("Test", "Failed: ${accountModel.message}")
-                            }
-                        },
-                        { error ->
-                            Log.e("Test", "Error: $error")
-                        }
-                    )?.let {
-                        compositeDisposable.add(it)
-                    }
-            } else {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-            }
+            handleAddToCart()
         }
 
-        // Load images into ViewFlipper
         loadImagesIntoViewFlipper()
-
-        // Load reviews for the product
         loadReviewsForProduct(product.id)
     }
 
+    private fun setupUI() {
+        binding.tvProductDetailName.text = product.name
+        binding.tvProductDetailPrice.text = "${product.price}đ"
+        binding.details.text = product.details
+        binding.delivery.text = product.delivery
+        binding.description.text = product.description
+        binding.rating.rating = product.overall_rating?.toFloat() ?: 5.0f
+    }
+
+    private fun setupReviewAdapter() {
+        reviewAdapter = ReviewAdapter(reviewViewModel)
+        binding.rvRating.adapter = reviewAdapter
+        binding.rvRating.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun setupRelatedProductAdapter() {
+        relatedProductAdapter = RelatedProductAdapter(emptyList())
+        binding.RecommendRcv.adapter = relatedProductAdapter
+        binding.RecommendRcv.layoutManager = GridLayoutManager(this, 2)
+    }
+
+    private fun handleAddToCart() {
+        val productId = product.id
+        val sharedPreferences = this.getSharedPreferences("MySharedPreferences", Context.MODE_PRIVATE)
+        val token = sharedPreferences.getString("Authorization", null)
+
+        if (!token.isNullOrEmpty()) {
+            val addToCartObservable = productRepository.addToCart(token, productId)
+
+            addToCartObservable
+                ?.subscribeOn(Schedulers.io())
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe(
+                    { accountModel ->
+                        handleAddToCartSuccess(accountModel)
+                    },
+                    { error ->
+                        handleAddToCartError(error)
+                    }
+                )?.let {
+                    compositeDisposable.add(it)
+                }
+        } else {
+            navigateToLogin()
+        }
+    }
+
+    private fun handleAddToCartSuccess(accountModel: AccountModel) {
+        if (accountModel.success) {
+            Toast.makeText(this, "Thêm sản phẩm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show()
+        } else {
+            Log.e("Test", "Failed: ${accountModel.message}")
+        }
+    }
+
+    private fun handleAddToCartError(error: Throwable) {
+        Log.e("Test", "Error: $error")
+    }
+
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
     private fun loadReviewsForProduct(productId: Int) {
-        // Observe reviewsLiveData from ReviewViewModel
         reviewViewModel.reviewsLiveData.observe(this, Observer { reviews ->
             reviewAdapter.submitList(reviews)
         })
 
-        // Fetch reviews for the specified product ID
         reviewViewModel.fetchReviews(productId)
     }
 
@@ -165,7 +177,6 @@ class ProductDetail : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // Dispose of all the subscriptions to avoid memory leaks
         compositeDisposable.clear()
     }
 }

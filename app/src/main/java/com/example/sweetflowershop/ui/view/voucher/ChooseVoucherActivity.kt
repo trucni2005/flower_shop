@@ -27,23 +27,26 @@ class ChooseVoucherActivity : AppCompatActivity() {
     }
 
     private fun setupVoucherAdapter(vouchers: ArrayList<Voucher>?) {
-        if (vouchers != null && vouchers.isNotEmpty()) {
-            val onItemClick: (Voucher) -> Unit = { voucher ->
-                // Xử lý khi item được nhấp vào
-                Log.d("Clicked voucher ID", voucher.id.toString())
-                val resultIntent = Intent()
-                resultIntent.putExtra("selectedVoucherCode", voucher.code)
-                resultIntent.putExtra("selectedVoucherId", voucher.id)
-                setResult(Activity.RESULT_OK, resultIntent)
-                finish()
-            }
-
-            adapter = VoucherAdapter(vouchers, onItemClick)  // Thêm onItemClick vào đây
-            binding.rvVouchers.layoutManager = LinearLayoutManager(this)
-            binding.rvVouchers.adapter = adapter
-        } else {
+        if (vouchers.isNullOrEmpty()) {
             println("No vouchers available or the voucher list is empty.")
+            return
         }
+
+        val onItemClick: (Voucher) -> Unit = { voucher ->
+            handleVoucherItemClick(voucher)
+        }
+
+        adapter = VoucherAdapter(vouchers, onItemClick)
+        binding.rvVouchers.layoutManager = LinearLayoutManager(this)
+        binding.rvVouchers.adapter = adapter
     }
 
+    private fun handleVoucherItemClick(voucher: Voucher) {
+        Log.d("Clicked voucher ID", voucher.id.toString())
+        val resultIntent = Intent()
+        resultIntent.putExtra("selectedVoucherCode", voucher.code)
+        resultIntent.putExtra("selectedVoucherId", voucher.id)
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
+    }
 }

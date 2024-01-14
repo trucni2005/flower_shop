@@ -1,7 +1,6 @@
 package com.example.sweetflowershop.ui.view.main
 
 import CategoryFragment
-import com.example.sweetflowershop.ui.view.product.HomeFragment
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,11 +13,13 @@ import com.example.sweetflowershop.R
 import com.example.sweetflowershop.ui.view.account.AccountFragment
 import com.example.sweetflowershop.ui.view.login.LoginActivity
 import com.example.sweetflowershop.ui.view.notification.NotificationFragment
+import com.example.sweetflowershop.ui.view.product.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var viewPager: ViewPager
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var pagerAdapter: MyPagerAdapter
@@ -36,33 +37,40 @@ class MainActivity : AppCompatActivity() {
                     Log.e("FCM Token", "Failed to get token")
                 }
             }
+
         val shouldLaunchLoginActivity = intent.getBooleanExtra("shouldLaunchLoginActivity", true)
 
         if (shouldLaunchLoginActivity) {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            launchLoginActivity()
         } else {
-
-            setContentView(R.layout.activity_main)
-            supportActionBar?.hide()
-
-            viewPager = findViewById(R.id.view_pager)
-            bottomNavigationView = findViewById(R.id.bottom_nav)
-            pagerAdapter = MyPagerAdapter(supportFragmentManager)
-            viewPager.adapter = pagerAdapter
-
-            bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.action_home -> viewPager.currentItem = 0
-                    R.id.action_category -> viewPager.currentItem = 1
-                    R.id.action_account -> viewPager.currentItem = 2
-                    R.id.action_notification -> viewPager.currentItem = 3
-                }
-                true
-            }
+            initializeMainView()
         }
+    }
 
+    private fun launchLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun initializeMainView() {
+        setContentView(R.layout.activity_main)
+        supportActionBar?.hide()
+
+        viewPager = findViewById(R.id.view_pager)
+        bottomNavigationView = findViewById(R.id.bottom_nav)
+        pagerAdapter = MyPagerAdapter(supportFragmentManager)
+        viewPager.adapter = pagerAdapter
+
+        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.action_home -> viewPager.currentItem = 0
+                R.id.action_category -> viewPager.currentItem = 1
+                R.id.action_account -> viewPager.currentItem = 2
+                R.id.action_notification -> viewPager.currentItem = 3
+            }
+            true
+        }
     }
 
     private fun saveTokenToSharedPreferences(token: String?) {

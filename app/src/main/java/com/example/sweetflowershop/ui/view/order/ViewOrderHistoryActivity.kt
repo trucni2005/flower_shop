@@ -20,20 +20,29 @@ class ViewOrderHistoryActivity : AppCompatActivity() {
         binding = ActivityViewOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Khởi tạo RecyclerView và Adapter
+        initializeRecyclerView()
+        initializeViewModel()
+        observeOrderHistoryLiveData()
+        fetchOrderHistoryData()
+    }
+
+    private fun initializeRecyclerView() {
         orderHistoryAdapter = OrderHistoryAdapter(mutableListOf(), this)
         binding.rvViewOrder.layoutManager = LinearLayoutManager(this)
         binding.rvViewOrder.adapter = orderHistoryAdapter
+    }
 
-        // Khởi tạo ViewModel
+    private fun initializeViewModel() {
         orderHistoryViewModel = ViewModelProvider(this).get(OrderHistoryViewModel::class.java)
+    }
 
-        // Quan sát LiveData từ ViewModel
+    private fun observeOrderHistoryLiveData() {
         orderHistoryViewModel.orderHistoryLiveData.observe(this, { orderHistoryList ->
             orderHistoryAdapter.updateOrderHistoryList(orderHistoryList)
         })
+    }
 
-        // Gọi phương thức để lấy danh sách đơn hàng lịch sử
+    private fun fetchOrderHistoryData() {
         orderHistoryViewModel.fetchOrderHistory(this)
     }
 }

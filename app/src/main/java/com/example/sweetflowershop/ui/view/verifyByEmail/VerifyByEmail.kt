@@ -20,8 +20,7 @@ class VerifyByEmail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         binding = VerifyByEmailBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         val request = intent.getStringExtra("request")
         val id = intent.getStringExtra("id")
@@ -32,39 +31,56 @@ class VerifyByEmail : AppCompatActivity() {
 
         binding.btnSubmit.setOnClickListener {
             val otp = binding.etVerificationCode.text.toString()
-            if (id != null) {
-                accountAPIService.verifyOTP(id, otp)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { accountModel ->
-                            if (accountModel.success) {
-                                Log.e("DEBUG", "Verify OTP Success")
-                                val successMessage = accountModel.message
-                                if (request == "0")
-                                {
-                                    Log.e("DEBUG", "Verify OTP Success. REQUEST: Login")
-                                    performRegistration(username, password, email, phoneNumber)
-                                }
-                                else
-                                {
-                                    Log.e("DEBUG", "Verify OTP Success. REQUEST: Foget Password")
-                                    performFogotPassword(username)
-                                }
-                            } else {
-                                val errorMessage = accountModel.message
-                                Log.e("DEBUG", "Verify OTP failed. Message: $errorMessage")
-                                // Handle verification failure
-                            }
-                        },
-                        { throwable ->
-                            Log.e("DEBUG", "Error occurred during OTP verification: ${throwable.message}")
-                            throwable.printStackTrace()
-                            // Handle error during OTP verification
-                        }
-                    )
+            id?.let {
+                verifyOTP(it, otp, request, username, password, email, phoneNumber)
             }
         }
+    }
+
+    private fun verifyOTP(
+        id: String,
+        otp: String,
+        request: String?,
+        username: String?,
+        password: String?,
+        email: String?,
+        phoneNumber: String?
+    ) {
+        accountAPIService.verifyOTP(id, otp)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { accountModel ->
+                    if (accountModel.success) {
+                        handleOTPSuccess(request, username, password, email, phoneNumber)
+                    } else {
+                        handleOTPFailure(accountModel.message)
+                    }
+                },
+                { throwable ->
+                    handleOTPFailure(throwable.message)
+                    throwable.printStackTrace()
+                }
+            )
+    }
+
+    private fun handleOTPSuccess(
+        request: String?,
+        username: String?,
+        password: String?,
+        email: String?,
+        phoneNumber: String?
+    ) {
+        Log.e("DEBUG", "Verify OTP Success")
+        when (request) {
+            "0" -> performRegistration(username, password, email, phoneNumber)
+            else -> performForgotPassword(username)
+        }
+    }
+
+    private fun handleOTPFailure(errorMessage: String?) {
+        Log.e("DEBUG", "Verify OTP failed. Message: $errorMessage")
+        showToast("Xác thực bằng OTP thất bại!")
     }
 
     private fun performRegistration(username: String?, password: String?, email: String?, phoneNumber: String?) {
@@ -75,28 +91,33 @@ class VerifyByEmail : AppCompatActivity() {
                 .subscribe(
                     { accountModel ->
                         if (accountModel.success) {
-                            val successMessage = accountModel.message
-                            Toast.makeText(this, "Đăng kí thành công!", Toast.LENGTH_SHORT).show()
+                            showToast("Đăng ký thành công!")
                             navigateToHomeFragment()
                         } else {
-                            val errorMessage = accountModel.message
-                            Log.e("DEBUG", "Registration failed. Message: $errorMessage")
-                            // Handle registration failure
+                            handleRegistrationFailure(accountModel.message)
                         }
                     },
                     { throwable ->
-                        Log.e("DEBUG", "Error occurred during registration: ${throwable.message}")
+                        handleRegistrationFailure(throwable.message)
                         throwable.printStackTrace()
-                        // Handle error during registration
                     }
                 )
         } else {
-            // Handle case where information is invalid or missing
+            showToast("Đăng ký thất bại!")
         }
     }
 
-    private fun performFogotPassword(username: String?) {
-        navigateToFogotPasswordFragment(username)
+    private fun handleRegistrationFailure(errorMessage: String?) {
+        Log.e("DEBUG", "Registration failed. Message: $errorMessage")
+        showToast("Đăng ký thất bại!")
+    }
+
+    private fun performForgotPassword(username: String?) {
+        navigateToForgotPasswordFragment(username)
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun navigateToHomeFragment() {
@@ -105,7 +126,7 @@ class VerifyByEmail : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun navigateToFogotPasswordFragment(username: String?) {
+    private fun navigateToForgotPasswordFragment(username: String?) {
         val intent = Intent(this, InputNewPasswordActivity::class.java)
         intent.putExtra("username", username)
         startActivity(intent)
