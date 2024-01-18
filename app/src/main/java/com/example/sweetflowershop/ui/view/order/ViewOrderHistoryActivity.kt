@@ -33,13 +33,13 @@ class ViewOrderHistoryActivity : AppCompatActivity() {
     }
 
     private fun initializeViewModel() {
-        orderHistoryViewModel = ViewModelProvider(this).get(OrderHistoryViewModel::class.java)
+        orderHistoryViewModel = ViewModelProvider(this)[OrderHistoryViewModel::class.java]
     }
 
     private fun observeOrderHistoryLiveData() {
-        orderHistoryViewModel.orderHistoryLiveData.observe(this, { orderHistoryList ->
+        orderHistoryViewModel.orderHistoryLiveData.observe(this) { orderHistoryList ->
             orderHistoryAdapter.updateOrderHistoryList(orderHistoryList)
-        })
+        }
     }
 
     private fun fetchOrderHistoryData() {

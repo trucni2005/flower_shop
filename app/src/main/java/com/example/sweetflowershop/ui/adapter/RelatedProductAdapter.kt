@@ -18,9 +18,6 @@ import java.io.Serializable
 class RelatedProductAdapter(private var relatedProducts: List<Product>) :
     RecyclerView.Adapter<RelatedProductAdapter.ViewHolder>() {
 
-    private val productRepository = ProductRepository()
-    private val compositeDisposable = CompositeDisposable()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: RelatedProductItemBinding = RelatedProductItemBinding.inflate(
             LayoutInflater.from(parent.context),

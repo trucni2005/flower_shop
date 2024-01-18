@@ -37,14 +37,14 @@ class CreateReviewAdapter(
     }
 
     fun updateRating(position: Int, rating: Int) {
-        if (position in 0 until orderDetailHistoryList.size) {
+        if (position in orderDetailHistoryList.indices) {
             orderDetailHistoryList[position].rating = rating.toInt()
             Log.d("CreateReviewAdapter", "Updated rating at position $position: $rating")
         }
     }
 
     fun updateContent(position: Int, content: String) {
-        if (position in 0 until orderDetailHistoryList.size) {
+        if (position in orderDetailHistoryList.indices) {
             orderDetailHistoryList[position].content = content
             Log.d("CreateReviewAdapter", "Updated content at position $position: $content")
         }

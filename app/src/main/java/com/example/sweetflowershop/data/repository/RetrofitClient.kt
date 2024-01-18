@@ -11,7 +11,7 @@ object RetrofitClient {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create()) // Thêm dòng này
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
     }
 }

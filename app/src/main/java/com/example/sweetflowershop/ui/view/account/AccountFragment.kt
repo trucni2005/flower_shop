@@ -34,8 +34,8 @@ class AccountFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false)
 
-        accountViewModel = ViewModelProvider(this).get(AccountViewModel::class.java)
-        voucherViewModel = ViewModelProvider(this).get(VoucherViewModel::class.java)
+        accountViewModel = ViewModelProvider(this)[AccountViewModel::class.java]
+        voucherViewModel = ViewModelProvider(this)[VoucherViewModel::class.java]
 
         setupAccountObserver()
         setupClickListeners()

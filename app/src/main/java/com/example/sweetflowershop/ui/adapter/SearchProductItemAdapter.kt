@@ -15,8 +15,6 @@ import java.io.Serializable
 class SearchProductItemAdapter(private var searchProducts: MutableList<Product>) :
     RecyclerView.Adapter<SearchProductItemAdapter.ViewHolder>() {
 
-    private val compositeDisposable = CompositeDisposable()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: SearchItemBinding = SearchItemBinding.inflate(
             LayoutInflater.from(parent.context),

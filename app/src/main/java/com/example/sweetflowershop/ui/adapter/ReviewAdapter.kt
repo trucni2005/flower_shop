@@ -44,7 +44,6 @@ class ReviewAdapter(private val viewModel: ReviewViewModel) : RecyclerView.Adapt
             binding.review = review
             binding.executePendingBindings()
 
-            // Load avatar using Picasso (if applicable)
             review?.customer?.avatar?.let {
                 Picasso.get().load(it).into(binding.ivItemImage)
             }

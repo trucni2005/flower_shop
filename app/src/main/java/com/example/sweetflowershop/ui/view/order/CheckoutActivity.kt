@@ -126,7 +126,7 @@ class CheckoutActivity : AppCompatActivity() {
     private fun confirmOrderAndStartWaitingActivity(addressId: Int, voucherId: Long, paymentOnline: Boolean, note: String?) {
         orderViewModel.confirmOrder(
             this, addressId, voucherId, paymentOnline, note,
-            onSuccess = { order ->
+            onSuccess = {
                 startWaitingActivity()
             }
         ) { errorMessage ->

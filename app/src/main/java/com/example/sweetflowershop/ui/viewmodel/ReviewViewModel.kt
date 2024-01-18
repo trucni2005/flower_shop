@@ -11,13 +11,13 @@ import io.reactivex.rxjava3.observers.DisposableSingleObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class ReviewViewModel : ViewModel() {
-    private val apiServices = ProductRepository() // Thay thế bằng API service của bạn
+    private val apiServices = ProductRepository()
     private val _reviewsLiveData = MutableLiveData<List<Review>>()
 
     val reviewsLiveData: LiveData<List<Review>> = _reviewsLiveData
 
     fun fetchReviews(productId: Int) {
-        apiServices.getReviewsbyProduct(productId) // Thay thế bằng phương thức lấy dữ liệu đánh giá của bạn
+        apiServices.getReviewsbyProduct(productId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableSingleObserver<List<Review>>() {
